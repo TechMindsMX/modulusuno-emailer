@@ -55,7 +55,7 @@ public class ValuarteController {
 		}
 
 		ContactBean bean = new ContactBean();
-    bean.setEmail("joseluis.delacruz@gmail.com");
+    bean.setEmail("servicio@valuarte.mx");
     bean.setName(command.getName());
     bean.setEmailOptional(command.getEmailOptional());
     bean.setPhone(command.getPhone());
