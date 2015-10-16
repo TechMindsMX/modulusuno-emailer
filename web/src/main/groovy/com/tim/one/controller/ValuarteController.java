@@ -49,13 +49,13 @@ public class ValuarteController {
 	public ResponseEntity<String> contact(@RequestBody String json){
 		ContactCommand command = new Gson().fromJson(json, ContactCommand.class);
 		log.info("Sending contact email: " + ToStringBuilder.reflectionToString(command));
-		
+
 		if(!validator.isValid(command)){
 	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST);
 		}
-		
+
 		ContactBean bean = new ContactBean();
-    bean.setEmail("sergio@makingdevs.com");
+    bean.setEmail("joseluis.delacruz@gmail.com");
     bean.setName(command.getName());
     bean.setEmailOptional(command.getEmailOptional());
     bean.setPhone(command.getPhone());
@@ -65,17 +65,17 @@ public class ValuarteController {
     messageDispatcher.message(bean);
     return new ResponseEntity<String>("OK", HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(method = POST, value = "/forgotPassword")
 	@ResponseBody
 	public ResponseEntity<String> forgotPassword(@RequestBody String json){
 		ForgotPasswordCommand command = new Gson().fromJson(json, ForgotPasswordCommand.class);
 		log.info("Sending email: " + ToStringBuilder.reflectionToString(command));
-		
+
 		if(!validator.isValid(command)){
 	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST);
 		}
-		
+
     ForgotPasswordBean bean = new ForgotPasswordBean();
     bean.setToken(command.getToken());
     bean.setEmail(command.getEmail());
@@ -83,5 +83,5 @@ public class ValuarteController {
     messageDispatcher.message(bean);
     return new ResponseEntity<String>("OK", HttpStatus.OK);
 	}
-	
+
 }
