@@ -24,14 +24,14 @@ class LoggerInterceptor implements HandlerInterceptor {
 	Properties dynamic
 	@Autowired
 	StringSplitter splitter
-	
+
 	def whiteList = []
-	
+
 	@PostConstruct
 	public void setup(){
 		whiteList = splitter.split(dynamic.getProperty(ApplicationState.WHITE_LIST))
 	}
-	
+
   boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
   	def data = [:]
   	data.remoteHost = request.remoteHost
@@ -40,12 +40,6 @@ class LoggerInterceptor implements HandlerInterceptor {
   	data.requestURL = request.requestURL
   	data.parameters = request.parameterMap
 
-		if(!whiteList.contains(request.remoteHost)){
-			data.warn = "UNAUTORIZED IP was detected in attempt to access to resource"
-			loggerService.notifyRequest(data)
-			return false;
-		}
-		
   	loggerService.notifyRequest(data)
     return true
   }
