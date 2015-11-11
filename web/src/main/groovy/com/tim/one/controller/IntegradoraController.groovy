@@ -15,6 +15,7 @@ import com.tim.one.command.NewUserCommand
 import com.tim.one.bean.mail.NewUserBean
 import com.tim.one.validator.CommandValidator
 import com.tim.one.integration.MessageService
+import com.tim.one.state.ApplicationState
 import com.tim.one.bean.MessageType
 
 import org.apache.commons.logging.Log
@@ -28,6 +29,8 @@ class IntegradoraController {
 	CommandValidator validator
   @Autowired
 	MessageService messageDispatcher
+  @Autowired
+	Properties dynamic
 
 	Log log = LogFactory.getLog(getClass())
 
@@ -42,7 +45,7 @@ class IntegradoraController {
 		}
 
     NewUserBean bean = new NewUserBean()
-    bean.setEmail('joseluis.delacruz@gmail.com')
+    bean.setEmail(dynamic.getProperty(ApplicationState.INTEGRADORA_ADMIN));
     bean.setName(command.getName())
     bean.setType(MessageType.NEW_USER)
     messageDispatcher.message(bean)
