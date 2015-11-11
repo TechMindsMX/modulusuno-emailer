@@ -53,11 +53,11 @@ public class TalentuaController {
 	public ResponseEntity<String> forgotPassword(@RequestBody String json){
 		ForgotPasswordCommand command = new Gson().fromJson(json, ForgotPasswordCommand.class);
 		log.info("Sending email: " + ToStringBuilder.reflectionToString(command));
-		
+
 		if(!validator.isValid(command)){
 	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST);
 		}
-		
+
     ForgotPasswordBean bean = new ForgotPasswordBean();
     bean.setToken(dynamic.getProperty(ApplicationState.FORGOT_PASSWORD_PREFIX) + command.getToken());
     bean.setEmail(command.getEmail());
@@ -65,17 +65,17 @@ public class TalentuaController {
     messageDispatcher.message(bean);
     return new ResponseEntity<String>("OK", HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(method = POST, value = "/register")
 	@ResponseBody
 	public ResponseEntity<String> register(@RequestBody String json){
 		RegisterCommand command = new Gson().fromJson(json, RegisterCommand.class);
 		log.info("Sending email: " + ToStringBuilder.reflectionToString(command));
-		
+
 		if(!validator.isValid(command)){
 	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST);
 		}
-		
+
     ForgotPasswordBean bean = new ForgotPasswordBean();
     bean.setToken(dynamic.getProperty(ApplicationState.REGISTER_PREFIX) + command.getToken());
     bean.setEmail(command.getEmail());
@@ -83,17 +83,17 @@ public class TalentuaController {
     messageDispatcher.message(bean);
     return new ResponseEntity<String>("OK", HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(method = POST, value = "/newUser")
 	@ResponseBody
 	public ResponseEntity<String> newUser(@RequestBody String json){
 		NewUserCommand command = new Gson().fromJson(json, NewUserCommand.class);
 		log.info("Sending email: " + ToStringBuilder.reflectionToString(command));
-		
+
 		if(!validator.isValid(command)){
 	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST);
 		}
-		
+
     NewUserBean bean = new NewUserBean();
     bean.setEmail(dynamic.getProperty(ApplicationState.ADMIN_EMAIL));
     bean.setName(command.getName());
@@ -101,17 +101,17 @@ public class TalentuaController {
     messageDispatcher.message(bean);
     return new ResponseEntity<String>("OK", HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(method = POST, value = "/forgotUsername")
 	@ResponseBody
 	public ResponseEntity<String> forgotUsername(@RequestBody String json){
 		NewUserCommand command = new Gson().fromJson(json, NewUserCommand.class);
 		log.info("Sending email: " + ToStringBuilder.reflectionToString(command));
-		
+
 		if(!validator.isValid(command)){
 	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST);
 		}
-		
+
     NewUserBean bean = new NewUserBean();
     bean.setEmail(command.getEmail());
     bean.setName(command.getName());
@@ -119,17 +119,17 @@ public class TalentuaController {
     messageDispatcher.message(bean);
     return new ResponseEntity<String>("OK", HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(method = POST, value = "/musicianAssignedFacilitator")
 	@ResponseBody
 	public ResponseEntity<String> musicianAssignedFacilitator(@RequestBody String json){
 		AssignationCommand command = new Gson().fromJson(json, AssignationCommand.class);
 		log.info("Sending email: " + ToStringBuilder.reflectionToString(command));
-		
+
 		if(!validator.isValid(command)){
 	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST);
 		}
-		
+
     AssignationBean bean = new AssignationBean();
     bean.setEmail(command.getEmail());
     bean.setName(command.getName());
@@ -138,17 +138,17 @@ public class TalentuaController {
     messageDispatcher.message(bean);
     return new ResponseEntity<String>("OK", HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(method = POST, value = "/musicianAssignedUser")
 	@ResponseBody
 	public ResponseEntity<String> musicianAssignedUser(@RequestBody String json){
 		AssignationCommand command = new Gson().fromJson(json, AssignationCommand.class);
 		log.info("Sending email: " + ToStringBuilder.reflectionToString(command));
-		
+
 		if(!validator.isValid(command)){
 	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST);
 		}
-		
+
     AssignationBean bean = new AssignationBean();
     bean.setEmail(command.getEmail());
     bean.setName(command.getName());
@@ -158,17 +158,17 @@ public class TalentuaController {
     messageDispatcher.message(bean);
     return new ResponseEntity<String>("OK", HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(method = POST, value = "/musicianRefused")
 	@ResponseBody
 	public ResponseEntity<String> musicianRefused(@RequestBody String json){
 		AssignationCommand command = new Gson().fromJson(json, AssignationCommand.class);
 		log.info("Sending email: " + ToStringBuilder.reflectionToString(command));
-		
+
 		if(!validator.isValid(command)){
 	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST);
 		}
-		
+
     AssignationBean bean = new AssignationBean();
     bean.setEmail(command.getEmail());
     bean.setName(command.getName());
@@ -178,17 +178,17 @@ public class TalentuaController {
     messageDispatcher.message(bean);
     return new ResponseEntity<String>("OK", HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(method = POST, value = "/companyAssignedBuyer")
 	@ResponseBody
 	public ResponseEntity<String> companyAssignedBuyer(@RequestBody String json){
 		AssignationCommand command = new Gson().fromJson(json, AssignationCommand.class);
 		log.info("Sending email: " + ToStringBuilder.reflectionToString(command));
-		
+
 		if(!validator.isValid(command)){
 	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST);
 		}
-		
+
     AssignationBean bean = new AssignationBean();
     bean.setEmail(command.getEmail());
     bean.setName(command.getName());
@@ -197,17 +197,17 @@ public class TalentuaController {
     messageDispatcher.message(bean);
     return new ResponseEntity<String>("OK", HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(method = POST, value = "/companyAssignedUser")
 	@ResponseBody
 	public ResponseEntity<String> companyAssignedUser(@RequestBody String json){
 		AssignationCommand command = new Gson().fromJson(json, AssignationCommand.class);
 		log.info("Sending email: " + ToStringBuilder.reflectionToString(command));
-		
+
 		if(!validator.isValid(command)){
 	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST);
 		}
-		
+
     AssignationBean bean = new AssignationBean();
     bean.setEmail(command.getEmail());
     bean.setName(command.getName());
@@ -217,17 +217,17 @@ public class TalentuaController {
     messageDispatcher.message(bean);
     return new ResponseEntity<String>("OK", HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(method = POST, value = "/companyRefused")
 	@ResponseBody
 	public ResponseEntity<String> companyRefused(@RequestBody String json){
 		AssignationCommand command = new Gson().fromJson(json, AssignationCommand.class);
 		log.info("Sending email: " + ToStringBuilder.reflectionToString(command));
-		
+
 		if(!validator.isValid(command)){
 	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST);
 		}
-		
+
     AssignationBean bean = new AssignationBean();
     bean.setEmail(command.getEmail());
     bean.setName(command.getName());
@@ -243,11 +243,11 @@ public class TalentuaController {
 	public ResponseEntity<String> companyEdited(@RequestBody String json){
 		AssignationCommand command = new Gson().fromJson(json, AssignationCommand.class);
 		log.info("Sending email: " + ToStringBuilder.reflectionToString(command));
-		
+
 		if(!validator.isValid(command)){
 	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST);
 		}
-		
+
     AssignationBean bean = new AssignationBean();
     bean.setEmail(command.getEmail());
     bean.setName(command.getName());
@@ -256,17 +256,17 @@ public class TalentuaController {
     messageDispatcher.message(bean);
     return new ResponseEntity<String>("OK", HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(method = POST, value = "/musicianEdited")
 	@ResponseBody
 	public ResponseEntity<String> musicianEdited(@RequestBody String json){
 		AssignationCommand command = new Gson().fromJson(json, AssignationCommand.class);
 		log.info("Sending email: " + ToStringBuilder.reflectionToString(command));
-		
+
 		if(!validator.isValid(command)){
 	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST);
 		}
-		
+
     AssignationBean bean = new AssignationBean();
     bean.setEmail(command.getEmail());
     bean.setName(command.getName());

@@ -22,7 +22,7 @@
             <h1>Creación de cuenta</h1>
         </header>
         <div class="container">
-            <div class="text-left"> 
+            <div class="text-left">
 </div>
             <div class="text-left">
                 <div class="container">
@@ -34,7 +34,7 @@
                         </div>
                     </div>
                 </div>
-                <p>El usuario ${name} ha creado y validado su cuenta.</p>
+                <p>El usuario ${name} ha creado su cuenta.</p>
                 <p><br></p>
                 <p><br></p>
                 <p class="text-center"><br></p>
