@@ -8,7 +8,7 @@
         <meta name="author" content="">
         <title>Notificación</title>
         <!-- Bootstrap core CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">    
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
         <!-- Custom styles for this template -->
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -35,10 +35,10 @@
     </head>
     <body>
         <header class="">
-            <h1>Por favor confirme su email para <b>100 Hundreds</b></h1>
+            <h1>Por favor confirme su email</h1>
         </header>
         <div class="container">
-            <div class="text-left"> 
+            <div class="text-left">
 </div>
             <div class="text-left">
                 <div class="container">
@@ -49,7 +49,7 @@
                         </div>
                     </div>
                 </div>
-                <p>Gracias por registrarse en 100 Hundreds. Su cuenta ha sido creada y debe ser activada antes de que la pueda usar.</p>
+                <p>Gracias por registrarse. Su cuenta ha sido creada y debe ser activada antes de que la pueda usar.</p>
                 <p>Para activar la cuenta, haga clic sobre el siguiente enlace o copie y pegue la URL completa en su navegador</p>
                 <p><br></p>
                 <p class="text-center"><a href="${token}">${token}</a></p>

@@ -13,6 +13,9 @@ import com.google.gson.Gson
 
 import com.tim.one.command.NewUserCommand
 import com.tim.one.bean.mail.NewUserBean
+import com.tim.one.command.RegisterCommand
+import com.tim.one.bean.mail.ForgotPasswordBean
+
 import com.tim.one.validator.CommandValidator
 import com.tim.one.integration.MessageService
 import com.tim.one.state.ApplicationState
@@ -48,6 +51,24 @@ class IntegradoraController {
     bean.setEmail(dynamic.getProperty(ApplicationState.INTEGRADORA_ADMIN));
     bean.setName(command.getName())
     bean.setType(MessageType.NEW_USER)
+    messageDispatcher.message(bean)
+    return new ResponseEntity<String>("OK", HttpStatus.OK)
+	}
+
+  @RequestMapping(method = POST, value = "/register")
+	@ResponseBody
+	public ResponseEntity<String> register(@RequestBody String json){
+		RegisterCommand command = new Gson().fromJson(json, RegisterCommand.class)
+		log.info "Sending email: ${command.dump()}"
+
+		if(!validator.isValid(command)){
+	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST)
+		}
+
+    ForgotPasswordBean bean = new ForgotPasswordBean()
+    bean.setToken(command.getToken())
+    bean.setEmail(command.getEmail())
+    bean.setType(MessageType.REGISTER)
     messageDispatcher.message(bean)
     return new ResponseEntity<String>("OK", HttpStatus.OK)
 	}
