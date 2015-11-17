@@ -15,6 +15,7 @@ import com.tim.one.command.NewUserCommand
 import com.tim.one.bean.mail.NewUserBean
 import com.tim.one.command.RegisterCommand
 import com.tim.one.bean.mail.ForgotPasswordBean
+import com.tim.one.command.ForgotPasswordCommand
 
 import com.tim.one.validator.CommandValidator
 import com.tim.one.integration.MessageService
@@ -69,6 +70,24 @@ class IntegradoraController {
     bean.setToken(command.getToken())
     bean.setEmail(command.getEmail())
     bean.setType(MessageType.REGISTER)
+    messageDispatcher.message(bean)
+    return new ResponseEntity<String>("OK", HttpStatus.OK)
+	}
+
+  @RequestMapping(method = POST, value = "/forgot")
+	@ResponseBody
+	public ResponseEntity<String> forgot(@RequestBody String json){
+		ForgotPasswordCommand command = new Gson().fromJson(json, ForgotPasswordCommand.class)
+		log.info "Sending email: ${command.dump()}"
+
+		if(!validator.isValid(command)){
+	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST)
+		}
+
+    ForgotPasswordBean bean = new ForgotPasswordBean()
+    bean.setToken(command.getToken())
+    bean.setEmail(command.getEmail())
+    bean.setType(MessageType.FORGOT_PASSWORD)
     messageDispatcher.message(bean)
     return new ResponseEntity<String>("OK", HttpStatus.OK)
 	}
