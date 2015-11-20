@@ -98,20 +98,20 @@ class IntegradoraController {
   @RequestMapping(method = POST, value = "/companyIntegrated")
 	@ResponseBody
 	public ResponseEntity<String> companyAssignedBuyer(@RequestBody String json){
-		CompanyIntegratedCommand command = new Gson().fromJson(json, CompanyIntegratedCommand.class);
-		log.info("Sending email: " + ToStringBuilder.reflectionToString(command));
+		CompanyIntegratedCommand command = new Gson().fromJson(json, CompanyIntegratedCommand.class)
+		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
-	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST);
+	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST)
 		}
 
-    CompanyIntegratedBean bean = new CompanyIntegratedBean();
-    bean.setEmail(command.emailResponse);
-    bean.setName(command.nameCompany);
-    bean.setMessage(command.getMessage());
-    bean.setType(MessageType.COMPANY_INTEGRATED);
-    messageDispatcher.message(bean);
-    return new ResponseEntity<String>("OK", HttpStatus.OK);
+    CompanyIntegratedBean bean = new CompanyIntegratedBean()
+    bean.setEmail(command.emailResponse)
+    bean.setName(command.nameCompany)
+    bean.setMessage(command.message)
+    bean.setType(MessageType.COMPANY_INTEGRATED)
+    messageDispatcher.message(bean)
+    return new ResponseEntity<String>("OK", HttpStatus.OK)
 	}
 
 }
