@@ -1,4 +1,4 @@
-include "timone-emailer:formatter",
-        "timone-emailer:sender",
+include "emailer:formatter",
+        "emailer:sender",
         "services",
         "web"
