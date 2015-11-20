@@ -16,6 +16,9 @@ import com.tim.one.bean.mail.NewUserBean
 import com.tim.one.command.RegisterCommand
 import com.tim.one.bean.mail.ForgotPasswordBean
 import com.tim.one.command.ForgotPasswordCommand
+import com.tim.one.bean.mail.CompanyIntegratedBean
+import com.tim.one.command.CompanyIntegratedCommand
+
 
 import com.tim.one.validator.CommandValidator
 import com.tim.one.integration.MessageService
@@ -90,6 +93,25 @@ class IntegradoraController {
     bean.setType(MessageType.FORGOT_PASSWORD)
     messageDispatcher.message(bean)
     return new ResponseEntity<String>("OK", HttpStatus.OK)
+	}
+
+  @RequestMapping(method = POST, value = "/companyIntegrated")
+	@ResponseBody
+	public ResponseEntity<String> companyAssignedBuyer(@RequestBody String json){
+		CompanyIntegratedCommand command = new Gson().fromJson(json, CompanyIntegratedCommand.class);
+		log.info("Sending email: " + ToStringBuilder.reflectionToString(command));
+
+		if(!validator.isValid(command)){
+	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST);
+		}
+
+    CompanyIntegratedBean bean = new CompanyIntegratedBean();
+    bean.setEmail(command.emailResponse);
+    bean.setName(command.nameCompany);
+    bean.setMessage(command.getMessage());
+    bean.setType(MessageType.COMPANY_INTEGRATED);
+    messageDispatcher.message(bean);
+    return new ResponseEntity<String>("OK", HttpStatus.OK);
 	}
 
 }
