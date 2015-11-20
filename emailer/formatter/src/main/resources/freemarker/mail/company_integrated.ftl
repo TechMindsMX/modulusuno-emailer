@@ -34,7 +34,7 @@
     </style>
     </head>
     <body>
-        <table align="center">
+        <table align="left">
             <thead>
                 <tr>
 
