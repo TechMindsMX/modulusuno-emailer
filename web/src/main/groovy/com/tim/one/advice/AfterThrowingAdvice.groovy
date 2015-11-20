@@ -4,7 +4,7 @@ import org.aspectj.lang.annotation.AfterThrowing
 import org.aspectj.lang.annotation.Aspect
 import org.springframework.stereotype.Component
 
-import com.jos.dem.jmailer.exception.BusinessException
+import com.tim.one.exception.BusinessException
 
 import org.apache.commons.logging.Log
 import org.apache.commons.logging.LogFactory
