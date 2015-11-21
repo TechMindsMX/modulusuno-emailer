@@ -1,5 +1,6 @@
 package com.tim.one.constant
 
 interface ApplicationConstants {
-  String SENDER = 'email.sender'
+  final String SENDER = 'email.sender'
+  final String VALUARTE_TARGET = 'valuarte.target'
 }

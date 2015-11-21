@@ -24,6 +24,7 @@ import com.tim.one.command.ContactCommand
 import com.tim.one.command.ForgotPasswordCommand
 import com.tim.one.service.MessageService
 import com.tim.one.validator.CommandValidator
+import com.tim.one.constant.ApplicationConstants
 
 /**
  * @author josdem
@@ -40,7 +41,7 @@ public class ValuarteController {
 	@Autowired
 	private CommandValidator validator
 	@Autowired
-	private Properties dynamic
+	private Properties properties
 
 	private Log log = LogFactory.getLog(getClass())
 
@@ -55,7 +56,7 @@ public class ValuarteController {
 		}
 
 		ContactBean bean = new ContactBean()
-    bean.setEmail("servicio@valuarte.mx")
+    bean.setEmail(properties.getProperty(ApplicationConstants.VALUARTE_TARGET))
     bean.setName(command.getName())
     bean.setEmailOptional(command.getEmailOptional())
     bean.setPhone(command.getPhone())
