@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service
 import com.tim.one.integration.MailService
 import com.tim.one.service.NotificationService
 import com.tim.one.bean.EmailBean
-import com.tim.one.constant.ApplicationConstants
 
 import org.apache.commons.logging.Log
 import org.apache.commons.logging.LogFactory
@@ -24,8 +23,8 @@ class NotificationServiceImpl implements NotificationService {
 
   @Override
   void sendNotification(EmailBean bean) {
-    def (sender, subject, templateName) = obtainSubjectAndResourceToSendNotification(bean)
-      def data = [email:bean.email, sender:sender, subject:subject, templateName:templateName]
+    def (subject, templateName) = obtainSubjectAndResourceToSendNotification(bean)
+      def data = [email:bean.email, subject:subject, templateName:templateName]
       mailService.sendMailWithTemplate(data, bean.properties, data.templateName)
   }
 
@@ -34,11 +33,10 @@ class NotificationServiceImpl implements NotificationService {
     String subjectKey = "${bean.type.toString()}_SUBJECT"
 
     String templateName = properties.getProperty(templateKey)
-    String sender = properties.getProperty(ApplicationConstants.SENDER)
     String subject = properties.getProperty(subjectKey)
 
     log.info("Sending email with subject: " + subject)
-    [sender, subject, templateName]
+    [subject, templateName]
   }
 
 }

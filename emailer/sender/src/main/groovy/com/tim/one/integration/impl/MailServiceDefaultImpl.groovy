@@ -33,7 +33,6 @@ class MailServiceImpl implements MailService {
         MimeMessageHelper message = new MimeMessageHelper(mimeMessage, true)
         Template myTemplate = configuration.getTemplate(template)
         message.setTo(values.email)
-        message.setFrom(values.sender)
         message.setSubject(values.subject)
         String text = FreeMarkerTemplateUtils.processTemplateIntoString(myTemplate, model)
         message.setText(text, true)

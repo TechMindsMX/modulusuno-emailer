@@ -4,13 +4,14 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-	<context:component-scan base-package="com.tim.one.integration"/>
+  <context:component-scan base-package="com.tim.one.integration"/>
+  <context:property-placeholder location="classpath:config/emailer.properties" />
 
 	<bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com" />
 		<property name="port" value="465" />
-		<property name="username" value="soporte@techminds.com.mx" />
-		<property name="password" value="T3chminds2016" />
+    <property name="username" value="${email.sender}" />
+    <property name="password" value="${email.password}" />
 		<property name="javaMailProperties">
 			<props>
 				<prop key="mail.smtp.auth">true</prop>
