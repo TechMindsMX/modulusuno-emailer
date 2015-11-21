@@ -4,7 +4,6 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST
 
 import java.util.Properties
 
-import org.apache.commons.lang.builder.ToStringBuilder
 import org.apache.commons.logging.Log
 import org.apache.commons.logging.LogFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -46,7 +45,7 @@ public class EmailerController {
 	@ResponseBody
 	public ResponseEntity<String> message(@RequestBody String json){
 		MessageCommand command = new Gson().fromJson(json, MessageCommand.class)
-		log.info("Sending contact email: " + ToStringBuilder.reflectionToString(command))
+		log.info "Sending contact email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
 	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST)

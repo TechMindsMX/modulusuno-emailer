@@ -54,15 +54,6 @@ project(":emailer:formatter"){
   }
 }
 
-project(":services"){
-  dependencies {
-    compile "org.apache.commons:commons-lang3:3.0.1"
-		compile "commons-lang:commons-lang:2.3"
-    compile "com.google.code.gson:gson:2.2.2"
-    compile project(":emailer:formatter")
-  }
-}
-
 project(":web"){
 	apply plugin:"war"
   war.archiveName "timone.war"
@@ -70,18 +61,15 @@ project(":web"){
   httpPort=8082
 
   dependencies{
-		compile "com.fasterxml.jackson.core:jackson-databind:2.4.3"
-		compile "commons-fileupload:commons-fileupload:1.2.2"
-    compile "org.slf4j:slf4j-nop:1.7.7"
+    compile "com.google.code.gson:gson:2.2.2"
+    compile "commons-fileupload:commons-fileupload:1.2.2"
     compile "org.springframework.security.oauth:spring-security-oauth:2.0.3.RELEASE"
     compile "org.springframework:spring-aop:$springVersion"
     compile "org.aspectj:aspectjrt:1.8.2"
     compile "org.aspectj:aspectjweaver:1.8.2"
-    compile 'com.lowagie:itext:4.2.1'
-		compile 'org.jsoup:jsoup:1.8.1'
-		compile 'javax.el:el-api:2.2.1-b04'
+    compile 'org.jsoup:jsoup:1.8.1'
 		providedCompile "javax.servlet:jstl:1.2"
-    compile project(":services")
+    compile project(":emailer:formatter")
 	}
 
 	println "Setting environment to: ${currentEnvironment}"

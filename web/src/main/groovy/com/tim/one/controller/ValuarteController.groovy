@@ -4,7 +4,6 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST
 
 import java.util.Properties
 
-import org.apache.commons.lang.builder.ToStringBuilder
 import org.apache.commons.logging.Log
 import org.apache.commons.logging.LogFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -49,7 +48,7 @@ public class ValuarteController {
 	@ResponseBody
 	public ResponseEntity<String> contact(@RequestBody String json){
 		ContactCommand command = new Gson().fromJson(json, ContactCommand.class)
-		log.info("Sending contact email: " + ToStringBuilder.reflectionToString(command))
+		log.info "Sending contact email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
 	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST)
@@ -71,7 +70,7 @@ public class ValuarteController {
 	@ResponseBody
 	public ResponseEntity<String> forgotPassword(@RequestBody String json){
 		ForgotPasswordCommand command = new Gson().fromJson(json, ForgotPasswordCommand.class)
-		log.info("Sending email: " + ToStringBuilder.reflectionToString(command))
+		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
 	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST)

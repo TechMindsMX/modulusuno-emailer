@@ -22,7 +22,6 @@ import com.tim.one.command.CompanyIntegratedCommand
 
 import com.tim.one.validator.CommandValidator
 import com.tim.one.service.MessageService
-import com.tim.one.state.ApplicationState
 import com.tim.one.enums.MessageType
 
 import org.apache.commons.logging.Log

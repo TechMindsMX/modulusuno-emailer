@@ -1,8 +1,7 @@
 package com.tim.one.interceptor
 
-import groovy.transform.AutoClone;
-
-import javax.annotation.PostConstruct;
+import groovy.transform.AutoClone
+import javax.annotation.PostConstruct
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
@@ -10,11 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.servlet.HandlerInterceptor
 import org.springframework.web.servlet.ModelAndView
 
-import com.fasterxml.jackson.databind.Module.SetupContext;
 import com.tim.one.service.LoggerService
-import com.tim.one.service.StringSplitter
-import com.tim.one.service.impl.StringSplitterImpl;
-import com.tim.one.state.ApplicationState;
+import com.tim.one.constant.ApplicationConstants
 
 class LoggerInterceptor implements HandlerInterceptor {
 
@@ -22,14 +18,12 @@ class LoggerInterceptor implements HandlerInterceptor {
   LoggerService loggerService
 	@Autowired
 	Properties dynamic
-	@Autowired
-	StringSplitter splitter
 
 	def whiteList = []
 
 	@PostConstruct
 	public void setup(){
-		whiteList = splitter.split(dynamic.getProperty(ApplicationState.WHITE_LIST))
+		whiteList = dynamic.getProperty(ApplicationConstants.WHITE_LIST).tokenize(',')
 	}
 
   boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {

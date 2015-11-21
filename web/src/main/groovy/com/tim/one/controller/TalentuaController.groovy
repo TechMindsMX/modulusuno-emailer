@@ -4,7 +4,6 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST
 
 import java.util.Properties
 
-import org.apache.commons.lang.builder.ToStringBuilder
 import org.apache.commons.logging.Log
 import org.apache.commons.logging.LogFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -26,8 +25,8 @@ import com.tim.one.command.ForgotPasswordCommand
 import com.tim.one.command.NewUserCommand
 import com.tim.one.command.RegisterCommand
 import com.tim.one.service.MessageService
-import com.tim.one.state.ApplicationState
 import com.tim.one.validator.CommandValidator
+import com.tim.one.constant.ApplicationConstants
 
 /**
  * @author josdem
@@ -52,14 +51,14 @@ public class TalentuaController {
 	@ResponseBody
 	public ResponseEntity<String> forgotPassword(@RequestBody String json){
 		ForgotPasswordCommand command = new Gson().fromJson(json, ForgotPasswordCommand.class)
-		log.info("Sending email: " + ToStringBuilder.reflectionToString(command))
+		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
 	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST)
 		}
 
     ForgotPasswordBean bean = new ForgotPasswordBean()
-    bean.setToken(dynamic.getProperty(ApplicationState.FORGOT_PASSWORD_PREFIX) + command.getToken())
+    bean.setToken(dynamic.getProperty(ApplicationConstats.FORGOT_PASSWORD_PREFIX) + command.getToken())
     bean.setEmail(command.getEmail())
     bean.setType(MessageType.FORGOT_PASSWORD)
     messageDispatcher.message(bean)
@@ -70,14 +69,14 @@ public class TalentuaController {
 	@ResponseBody
 	public ResponseEntity<String> register(@RequestBody String json){
 		RegisterCommand command = new Gson().fromJson(json, RegisterCommand.class)
-		log.info("Sending email: " + ToStringBuilder.reflectionToString(command))
+		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
 	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST)
 		}
 
     ForgotPasswordBean bean = new ForgotPasswordBean()
-    bean.setToken(dynamic.getProperty(ApplicationState.REGISTER_PREFIX) + command.getToken())
+    bean.setToken(dynamic.getProperty(ApplicationConstats.REGISTER_PREFIX) + command.getToken())
     bean.setEmail(command.getEmail())
     bean.setType(MessageType.REGISTER)
     messageDispatcher.message(bean)
@@ -88,14 +87,14 @@ public class TalentuaController {
 	@ResponseBody
 	public ResponseEntity<String> newUser(@RequestBody String json){
 		NewUserCommand command = new Gson().fromJson(json, NewUserCommand.class)
-		log.info("Sending email: " + ToStringBuilder.reflectionToString(command))
+		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
 	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST)
 		}
 
     NewUserBean bean = new NewUserBean()
-    bean.setEmail(dynamic.getProperty(ApplicationState.ADMIN_EMAIL))
+    bean.setEmail(dynamic.getProperty(ApplicationConstats.ADMIN_EMAIL))
     bean.setName(command.getName())
     bean.setType(MessageType.NEW_USER)
     messageDispatcher.message(bean)
@@ -106,7 +105,7 @@ public class TalentuaController {
 	@ResponseBody
 	public ResponseEntity<String> forgotUsername(@RequestBody String json){
 		NewUserCommand command = new Gson().fromJson(json, NewUserCommand.class)
-		log.info("Sending email: " + ToStringBuilder.reflectionToString(command))
+		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
 	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST)
@@ -124,7 +123,7 @@ public class TalentuaController {
 	@ResponseBody
 	public ResponseEntity<String> musicianAssignedFacilitator(@RequestBody String json){
 		AssignationCommand command = new Gson().fromJson(json, AssignationCommand.class)
-		log.info("Sending email: " + ToStringBuilder.reflectionToString(command))
+		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
 	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST)
@@ -143,7 +142,7 @@ public class TalentuaController {
 	@ResponseBody
 	public ResponseEntity<String> musicianAssignedUser(@RequestBody String json){
 		AssignationCommand command = new Gson().fromJson(json, AssignationCommand.class)
-		log.info("Sending email: " + ToStringBuilder.reflectionToString(command))
+		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
 	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST)
@@ -163,7 +162,7 @@ public class TalentuaController {
 	@ResponseBody
 	public ResponseEntity<String> musicianRefused(@RequestBody String json){
 		AssignationCommand command = new Gson().fromJson(json, AssignationCommand.class)
-		log.info("Sending email: " + ToStringBuilder.reflectionToString(command))
+		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
 	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST)
@@ -183,7 +182,7 @@ public class TalentuaController {
 	@ResponseBody
 	public ResponseEntity<String> companyAssignedBuyer(@RequestBody String json){
 		AssignationCommand command = new Gson().fromJson(json, AssignationCommand.class)
-		log.info("Sending email: " + ToStringBuilder.reflectionToString(command))
+		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
 	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST)
@@ -202,7 +201,7 @@ public class TalentuaController {
 	@ResponseBody
 	public ResponseEntity<String> companyAssignedUser(@RequestBody String json){
 		AssignationCommand command = new Gson().fromJson(json, AssignationCommand.class)
-		log.info("Sending email: " + ToStringBuilder.reflectionToString(command))
+		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
 	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST)
@@ -222,7 +221,7 @@ public class TalentuaController {
 	@ResponseBody
 	public ResponseEntity<String> companyRefused(@RequestBody String json){
 		AssignationCommand command = new Gson().fromJson(json, AssignationCommand.class)
-		log.info("Sending email: " + ToStringBuilder.reflectionToString(command))
+		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
 	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST)
@@ -242,7 +241,7 @@ public class TalentuaController {
 	@ResponseBody
 	public ResponseEntity<String> companyEdited(@RequestBody String json){
 		AssignationCommand command = new Gson().fromJson(json, AssignationCommand.class)
-		log.info("Sending email: " + ToStringBuilder.reflectionToString(command))
+		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
 	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST)
@@ -261,7 +260,7 @@ public class TalentuaController {
 	@ResponseBody
 	public ResponseEntity<String> musicianEdited(@RequestBody String json){
 		AssignationCommand command = new Gson().fromJson(json, AssignationCommand.class)
-		log.info("Sending email: " + ToStringBuilder.reflectionToString(command))
+		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
 	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST)
