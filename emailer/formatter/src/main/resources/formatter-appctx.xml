@@ -8,7 +8,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
 	<context:component-scan base-package="com.tim.one.emailer.helper" />
-	<context:component-scan base-package="com.tim.one.emailer.validator" />
-	<util:properties id="emailProperties" location="classpath:config/email.properties" />
+  <context:component-scan base-package="com.tim.one.emailer.validator" />
+  <util:properties id="properties" location="classpath:config/emailer.properties" />
 
 </beans>
