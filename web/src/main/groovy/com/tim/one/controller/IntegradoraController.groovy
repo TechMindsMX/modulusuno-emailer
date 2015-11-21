@@ -12,18 +12,18 @@ import org.springframework.http.HttpStatus
 import com.google.gson.Gson
 
 import com.tim.one.command.NewUserCommand
-import com.tim.one.bean.mail.NewUserBean
+import com.tim.one.bean.NewUserBean
 import com.tim.one.command.RegisterCommand
-import com.tim.one.bean.mail.ForgotPasswordBean
+import com.tim.one.bean.ForgotPasswordBean
 import com.tim.one.command.ForgotPasswordCommand
-import com.tim.one.bean.mail.CompanyIntegratedBean
+import com.tim.one.bean.CompanyIntegratedBean
 import com.tim.one.command.CompanyIntegratedCommand
 
 
 import com.tim.one.validator.CommandValidator
-import com.tim.one.integration.MessageService
+import com.tim.one.service.MessageService
 import com.tim.one.state.ApplicationState
-import com.tim.one.bean.MessageType
+import com.tim.one.enums.MessageType
 
 import org.apache.commons.logging.Log
 import org.apache.commons.logging.LogFactory

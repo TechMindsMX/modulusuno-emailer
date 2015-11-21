@@ -1,6 +1,6 @@
-package com.tim.one.bean.mail
+package com.tim.one.bean
 
-import com.tim.one.bean.MessageType;
+import com.tim.one.enums.MessageType
 
 class ForgotPasswordBean implements EmailBean {
 	String email

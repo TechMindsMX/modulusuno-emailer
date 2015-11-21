@@ -1,8 +1,6 @@
-package com.tim.one.bean.mail
+package com.tim.one.bean
 
-import org.hibernate.validator.constraints.SafeHtml;
-
-import com.tim.one.bean.MessageType;
+import com.tim.one.enums.MessageType
 
 class ContactBean implements EmailBean {
 	String email
