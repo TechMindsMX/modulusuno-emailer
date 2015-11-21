@@ -11,8 +11,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import com.tim.one.bean.MessageType;
-import com.tim.one.bean.mail.ForgotPasswordBean;
+import com.tim.one.enums.MessageType;
+import com.tim.one.bean.ForgotPasswordBean;
 import com.tim.one.service.NotificationService;
 
 public class TestMessageConsumer {

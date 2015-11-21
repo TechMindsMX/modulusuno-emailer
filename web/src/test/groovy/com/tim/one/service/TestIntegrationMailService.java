@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.tim.one.bean.MessageType;
-import com.tim.one.bean.mail.ForgotPasswordBean;
+import com.tim.one.enums.MessageType;
+import com.tim.one.bean.ForgotPasswordBean;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath:/mail-context.xml", "classpath:/services-test-appctx.xml"})
@@ -16,7 +16,7 @@ public class TestIntegrationMailService {
   @Autowired
   private NotificationService notificationService;
 
-  private String email = "test@trama.mx";
+  private String email = "joseluis.delacruz@gmail.com";
   private String token = "token";
 
   @Test
@@ -26,7 +26,7 @@ public class TestIntegrationMailService {
 
     notificationService.sendNotification(bean);
   }
-  
+
   private ForgotPasswordBean setAbonoCuentaBeanExpectations() {
   	ForgotPasswordBean bean = new ForgotPasswordBean();
     bean.setEmail(email);
