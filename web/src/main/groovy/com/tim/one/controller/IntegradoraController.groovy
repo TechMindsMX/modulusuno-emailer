@@ -18,11 +18,10 @@ import com.tim.one.bean.ForgotPasswordBean
 import com.tim.one.command.ForgotPasswordCommand
 import com.tim.one.bean.CompanyIntegratedBean
 import com.tim.one.command.CompanyIntegratedCommand
-
-
 import com.tim.one.validator.CommandValidator
 import com.tim.one.service.MessageService
 import com.tim.one.enums.MessageType
+import com.tim.one.constant.ApplicationConstants
 
 import org.apache.commons.logging.Log
 import org.apache.commons.logging.LogFactory
@@ -51,7 +50,7 @@ class IntegradoraController {
 		}
 
     NewUserBean bean = new NewUserBean()
-    bean.setEmail(dynamic.getProperty(ApplicationState.INTEGRADORA_ADMIN));
+    bean.setEmail(dynamic.getProperty(ApplicationConstants.INTEGRADORA_ADMIN));
     bean.setName(command.getName())
     bean.setType(MessageType.NEW_USER)
     messageDispatcher.message(bean)
