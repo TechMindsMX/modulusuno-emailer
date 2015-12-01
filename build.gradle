@@ -2,7 +2,7 @@ def springVersion = '4.1.7.RELEASE'
 def javassistVersion = '3.8.0.GA'
 def hibernateValidatorVersion = '5.1.3.Final'
 def jmsApiVersion = '1.1-rev-1'
-def	groovyVersion = '2.3.10'
+def	groovyVersion = '2.4.4'
 def currentEnvironment = project.hasProperty("environment")?environment:"development"
 def timoneConfigurationDir = "${System.getProperty('user.home')}/.emailer"
 
