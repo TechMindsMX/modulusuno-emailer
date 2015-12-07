@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus
 import com.google.gson.Gson
 
 import com.tim.one.command.NewUserCommand
+import com.tim.one.command.NameCommand
 import com.tim.one.bean.NewUserBean
 import com.tim.one.command.RegisterCommand
 import com.tim.one.bean.ForgotPasswordBean
@@ -42,7 +43,7 @@ class IntegradoraController {
   @RequestMapping(method = POST, value = "/newUser")
 	@ResponseBody
 	public ResponseEntity<String> newUser(@RequestBody String json){
-		NewUserCommand command = new Gson().fromJson(json, NewUserCommand.class)
+		NameCommand command = new Gson().fromJson(json, NameCommand.class)
 		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
@@ -52,7 +53,7 @@ class IntegradoraController {
     NewUserBean bean = new NewUserBean()
     bean.setEmail(properties.getProperty(ApplicationConstants.INTEGRADORA_ADMIN));
     bean.setName(command.getName())
-    bean.setType(MessageType.NEW_USER)
+    bean.setType(MessageType."${command.type}")
     messageDispatcher.message(bean)
     return new ResponseEntity<String>("OK", HttpStatus.OK)
 	}
@@ -111,5 +112,4 @@ class IntegradoraController {
     messageDispatcher.message(bean)
     return new ResponseEntity<String>("OK", HttpStatus.OK)
 	}
-
 }
