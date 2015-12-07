@@ -36,8 +36,6 @@ public class EmailerController {
 	private MessageService messageDispatcher
 	@Autowired
 	private CommandValidator validator
-	@Autowired
-	private Properties dynamic
 
 	private Log log = LogFactory.getLog(getClass())
 

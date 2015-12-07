@@ -35,7 +35,7 @@ class IntegradoraController {
   @Autowired
 	MessageService messageDispatcher
   @Autowired
-	Properties dynamic
+	Properties properties
 
 	Log log = LogFactory.getLog(getClass())
 
@@ -50,7 +50,7 @@ class IntegradoraController {
 		}
 
     NewUserBean bean = new NewUserBean()
-    bean.setEmail(dynamic.getProperty(ApplicationConstants.INTEGRADORA_ADMIN));
+    bean.setEmail(properties.getProperty(ApplicationConstants.INTEGRADORA_ADMIN));
     bean.setName(command.getName())
     bean.setType(MessageType.NEW_USER)
     messageDispatcher.message(bean)
