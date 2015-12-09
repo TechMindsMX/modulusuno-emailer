@@ -8,6 +8,6 @@
     <h1>Creación de cuenta</h1>
     <h3>Administrator</h3>
     <hr>
-    <p>El proveedor ${name} ha creado su cuenta.</p>
+    <p>El proveedor ${name} se ha agregado a la empresa ${company}.</p>
   </body>
 </html>

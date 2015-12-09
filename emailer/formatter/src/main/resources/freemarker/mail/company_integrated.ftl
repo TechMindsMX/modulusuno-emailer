@@ -48,7 +48,10 @@
 
                     <td>
                         <HR width=100% align="center">
-                        <p>Este correo es referente a la empresa: <span class="text-blue">${name}</span>, el mensaje es el siguiente: ${message}.</p>
+                        <p>Este correo es referente a la empresa: <span class="text-blue">${name}</span>, el mensaje es el siguiente: ${message}.
+                        </p>
+                        <br/>
+                        <p>Referencia: <a href="${url}">${url}</a></p>
                     </td>
                 </tr>
             </tbody>

@@ -8,6 +8,6 @@
     <h1>Creación de cuenta</h1>
     <h3>Administrator</h3>
     <hr>
-    <p>El integrado ${name} ha creado su cuenta.</p>
+    <p>Un nuevo usuario: ${name} ha creado y validado su cuenta.</p>
   </body>
 </html>

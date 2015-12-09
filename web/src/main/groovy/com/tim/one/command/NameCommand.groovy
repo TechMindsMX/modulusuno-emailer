@@ -7,6 +7,8 @@ class NameCommand implements Command {
 
   @SafeHtml
 	String name
+  @SafeHtml
+	String company
   LeadType type
 
 }
