@@ -127,6 +127,7 @@ class IntegradoraController {
     NewUserBean bean = new NewUserBean()
     bean.setEmail(command.getEmail())
     bean.setName(command.getName())
+    bean.setCompany(command.getCompany())
     bean.setType(MessageType."${command.type}")
     messageDispatcher.message(bean)
     return new ResponseEntity<String>("OK", HttpStatus.OK)
