@@ -6,5 +6,6 @@ class CompanyIntegratedBean implements EmailBean {
 	String email
 	String name
 	String message
+  String url
 	MessageType type
 }

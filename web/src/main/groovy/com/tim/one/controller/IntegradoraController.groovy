@@ -108,8 +108,28 @@ class IntegradoraController {
     bean.setEmail(command.emailResponse)
     bean.setName(command.nameCompany)
     bean.setMessage(command.message)
+    bean.setUrl(command.url)
     bean.setType(MessageType.COMPANY_INTEGRATED)
     messageDispatcher.message(bean)
     return new ResponseEntity<String>("OK", HttpStatus.OK)
 	}
+
+  @RequestMapping(method = POST, value = "/clientProvider")
+	@ResponseBody
+	public ResponseEntity<String> newUser(@RequestBody String json){
+		NameCommand command = new Gson().fromJson(json, NameCommand.class)
+		log.info "Sending email: ${command.dump()}"
+
+		if(!validator.isValid(command)){
+	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST);
+		}
+
+    NewUserBean bean = new NewUserBean()
+    bean.setEmail(command.getEmail())
+    bean.setName(command.getName())
+    bean.setType(MessageType."${command.type}")
+    messageDispatcher.message(bean)
+    return new ResponseEntity<String>("OK", HttpStatus.OK)
+	}
+
 }

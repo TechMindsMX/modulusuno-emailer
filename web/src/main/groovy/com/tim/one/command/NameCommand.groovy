@@ -9,6 +9,9 @@ class NameCommand implements Command {
 	String name
   @SafeHtml
 	String company
+  @Email
+	String email
+
   LeadType type
 
 }
