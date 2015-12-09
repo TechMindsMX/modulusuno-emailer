@@ -116,7 +116,7 @@ class IntegradoraController {
 
   @RequestMapping(method = POST, value = "/clientProvider")
 	@ResponseBody
-	public ResponseEntity<String> newUser(@RequestBody String json){
+	public ResponseEntity<String> clientProvider(@RequestBody String json){
 		NameCommand command = new Gson().fromJson(json, NameCommand.class)
 		log.info "Sending email: ${command.dump()}"
 
