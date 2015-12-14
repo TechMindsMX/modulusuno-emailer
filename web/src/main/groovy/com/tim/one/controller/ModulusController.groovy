@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody
 import com.google.gson.Gson
 import com.tim.one.bean.ErrorCode
 import com.tim.one.enums.MessageType
-import com.tim.one.bean.MessageBean
-import com.tim.one.command.MessageCommand
+import com.tim.one.bean.AccountBean
+import com.tim.one.command.AccountCommand
 import com.tim.one.service.MessageService
 import com.tim.one.validator.CommandValidator
 
