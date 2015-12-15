@@ -8,6 +8,6 @@
     <h1>Creación de cuenta</h1>
     <h3>Administrator</h3>
     <hr>
-    <p>Estimado cliente ${name}, le informamos que la cuenta ${account} ha sido creada en Modulusuno.</p>
+    <p>Estimado cliente ${name}, le informamos que se ha creado una cuenta Modulusuno: ${account} con cuenta STP ${stpAccount}.</p>
   </body>
 </html>

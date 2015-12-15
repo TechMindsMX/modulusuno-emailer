@@ -18,4 +18,8 @@ class AccountCommand implements Command {
 	@SafeHtml
 	String account
 
+  @NotNull
+	@SafeHtml
+	String stpAccount
+
 }

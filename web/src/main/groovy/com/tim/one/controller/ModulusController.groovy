@@ -53,6 +53,7 @@ class ModulusController {
     bean.setEmail(command.email)
     bean.setName(command.name)
     bean.setAccount(command.account)
+    bean.setStpAccount(command.stpAccount)
     bean.setType(MessageType.ACCOUNT)
     messageDispatcher.message(bean)
     return new ResponseEntity<String>("OK", HttpStatus.OK)

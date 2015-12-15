@@ -6,5 +6,6 @@ class AccountBean implements EmailBean {
 	String email
   String name
 	String account
+	String stpAccount
 	MessageType type
 }
