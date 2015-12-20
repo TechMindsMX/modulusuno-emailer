@@ -38,7 +38,7 @@
       <thead>
         <tr>
           <th>
-            <h1>Notificación Integradora</h1>
+            <h1>Notificaci\u00f3n Integradora</h1>
           </th>
         </tr>
       </thead>
@@ -53,7 +53,7 @@
                 <thead>
                   <tr>
                     <th>
-                      <h1>Información Bancaria</h1>
+                      <h1>Informaci\u00f3n Bancaria</h1>
                     </th>
                   </tr>
                 </thead>
@@ -64,15 +64,15 @@
                       <p>${account}</p>
                     </td>
                     <td>
-                      <h3>Mediante Deposito</h3>
+                      <h3>Mediante Dep\u00f3sito</h3>
                       <p>${bank}</p>
                       <p>${accountBank}</p>
                     </td>
                   </tr>
                 </tbody>
-              </table>            
+              </table>
             <br/>
-            <p>Confirmacion: <a href="${url}">${url}</a></p>
+            <p>Confirmaci\u00f3n: <a href="${url}">${url}</a></p>
           </td>
         </tr>
       </tbody>
