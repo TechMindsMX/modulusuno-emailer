@@ -39,7 +39,7 @@
                 <tr>
 
                     <th>
-                        <h1>Notificación Integradora</h1>
+                        <h1>Mensaje de la Integradora</h1>
                     </th>
                 </tr>
             </thead>
