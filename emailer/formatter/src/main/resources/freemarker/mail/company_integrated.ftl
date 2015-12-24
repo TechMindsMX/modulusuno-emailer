@@ -16,7 +16,6 @@
       </thead>
       <tbody>
         <tr>
-
           <td>
             <HR width=100% align="center">
             <p>Este correo es referente a la empresa: <span class="text-blue">${name}</span>, el mensaje es el siguiente: ${message}.
