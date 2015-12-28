@@ -159,4 +159,22 @@ class IntegradoraController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
   }
 
+  @RequestMapping(method = POST, value = "/authorizeSaleOrder")
+  @ResponseBody
+  public ResponseEntity<String> authorizeSaleOrder(@RequestBody String json){
+    SaleOrderCommand command = new Gson().fromJson(json, SaleOrderCommand.class)
+    log.info "Sending email: ${command.dump()}"
+
+    if(!validator.isValid(command)){
+      return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST);
+    }
+
+    SaleOrderBean bean = new SaleOrderBean()
+    bean.setEmail(command.getEmail())
+    bean.setName(command.getName())
+    bean.setRfc(command.getCompany())
+    bean.setType(MessageType.SALE_ORDER)
+    messageDispatcher.message(bean)
+    return new ResponseEntity<String>("OK", HttpStatus.OK)
+  }
 }
