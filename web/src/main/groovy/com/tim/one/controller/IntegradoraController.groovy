@@ -25,6 +25,9 @@ import com.tim.one.enums.MessageType
 import com.tim.one.constant.ApplicationConstants
 import com.tim.one.command.DepositOrderCommand
 import com.tim.one.bean.DepositOrderBean
+import com.tim.one.command.SaleOrderCommand
+import com.tim.one.bean.SaleOrderBean
+
 
 import org.apache.commons.logging.Log
 import org.apache.commons.logging.LogFactory
