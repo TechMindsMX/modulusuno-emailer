@@ -173,9 +173,10 @@ class IntegradoraController {
     }
 
     SaleOrderBean bean = new SaleOrderBean()
-    bean.setEmail(command.getEmail())
-    bean.setName(command.getName())
-    bean.setRfc(command.getRfc())
+    bean.setEmail(command.email)
+    bean.setName(command.name)
+    bean.setRfc(command.rfc)
+    bean.setUrl(command.url)
     bean.setType(MessageType.SALE_ORDER)
     messageDispatcher.message(bean)
     return new ResponseEntity<String>("OK", HttpStatus.OK)
