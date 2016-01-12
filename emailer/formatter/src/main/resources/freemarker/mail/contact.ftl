@@ -1,3 +1,4 @@
+<#ftl encoding="utf-8">
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -22,7 +23,7 @@
             <h1>Forma de contacto Valuarte</h1>
         </header>
         <div class="container">
-            <div class="text-left"> 
+            <div class="text-left">
 </div>
             <div class="text-left">
                 <div class="container">
