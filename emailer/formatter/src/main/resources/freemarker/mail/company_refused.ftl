@@ -1,3 +1,4 @@
+<#ftl encoding="utf-8">
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -8,7 +9,7 @@
         <meta name="author" content="">
         <title>Notificación</title>
         <!-- Bootstrap core CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">    
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
         <!-- Custom styles for this template -->
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -39,13 +40,13 @@
                 <tr>
 
                     <th>
-                        <h1>Rechazo de Proveedor</h1>            
+                        <h1>Rechazo de Proveedor</h1>
                     </th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    
+
                     <td>
                         <HR width=100% align="center">
                         <p>Estimado <span class="text-blue">${name}</span> le informamos que los datos de la empresa <span class="text-blue">${reference}</span> tiene el siguiente motivo de rechazo:</p>
@@ -55,6 +56,6 @@
                     </td>
                 </tr>
             </tbody>
-        </table>        
+        </table>
     </body>
 </html>

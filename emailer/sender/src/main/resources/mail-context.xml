@@ -25,5 +25,6 @@
 	<bean id="freemarkerConfiguration"
 		class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">
 		<property name="templateLoaderPath" value="classpath:/freemarker/mail/" />
+		<property name="defaultEncoding" value="utf-8" />
 	</bean>
 </beans>
