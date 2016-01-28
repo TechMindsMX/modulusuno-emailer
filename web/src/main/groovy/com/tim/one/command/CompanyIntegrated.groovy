@@ -3,7 +3,6 @@ package com.tim.one.command
 import javax.validation.constraints.NotNull
 import org.hibernate.validator.constraints.Email
 import org.hibernate.validator.constraints.SafeHtml
-import org.hibernate.validator.constraints.URL
 
 class CompanyIntegratedCommand implements Command {
 
@@ -17,7 +16,6 @@ class CompanyIntegratedCommand implements Command {
 	@SafeHtml
 	String message
 
-  @URL
   String url
 
 }
