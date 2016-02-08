@@ -1,5 +1,5 @@
 package com.tim.one.enums
 
 enum LeadType {
-  USER,CLIENTE,PROVEEDOR
+  NEW_USER,CLIENTE,PROVEEDOR
 }
