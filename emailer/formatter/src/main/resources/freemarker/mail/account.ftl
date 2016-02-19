@@ -20,7 +20,7 @@
   <h1>Creación de cuenta</h1>
   <hr>
   <p>Estimado cliente ${name}, le informamos que se ha creado una cuenta Modulusuno: ${account} con cuenta STP ${stpAccount}.</p>
-  <p>Vinculos</p>
-  <p style="text-align:center;">Despedida y agradecimiento</p>
+  <p><i>Sinceramente,<i/></p>
+  <p><i>Integradora de Emprendimientos Culturales</i></p>
 </body>
 </html>
