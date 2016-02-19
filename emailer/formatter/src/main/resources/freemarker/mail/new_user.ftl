@@ -10,6 +10,7 @@
   </style>
 </head>
 <body>
+  <img src="http://techminds.com.mx.s3.amazonaws.com/img/logoiecce-small.png">
   <h1>Creación de cuenta</h1>
   <hr>
   <p>El usuario ${name} ha creado su cuenta.</p>

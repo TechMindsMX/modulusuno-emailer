@@ -10,6 +10,7 @@
   </style>
 </head>
 <body>
+  <img src="http://techminds.com.mx.s3.amazonaws.com/img/logoiecce-small.png">
   <h1>¿Necesitas resetear tu contraseña?</h1>
   <hr/>
   <p>Alguien ha solicitado resetear tu contraseña</p>
