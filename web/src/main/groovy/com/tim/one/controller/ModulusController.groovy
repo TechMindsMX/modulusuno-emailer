@@ -151,4 +151,43 @@ class ModulusController {
 
   }
 
+  @RequestMapping(method = POST, value = "/companyIntegrated")
+  @ResponseBody
+  public ResponseEntity<String> companyAssignedBuyer(@RequestBody String json){
+    CompanyIntegratedCommand command = new Gson().fromJson(json, CompanyIntegratedCommand.class)
+    log.info "Sending email: ${command.dump()}"
+
+    if(!validator.isValid(command)){
+      return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST)
+    }
+
+    CompanyIntegratedBean bean = new CompanyIntegratedBean()
+    bean.setEmail(command.emailResponse)
+    bean.setName(command.nameCompany)
+    bean.setMessage(command.message)
+    bean.setUrl(command.url)
+    bean.setType(MessageType.COMPANY_INTEGRATED_MODULUS)
+    messageDispatcher.message(bean)
+    return new ResponseEntity<String>("OK", HttpStatus.OK)
+  }
+
+  @RequestMapping(method = POST, value = "/clientProvider")
+  @ResponseBody
+  public ResponseEntity<String> clientProvider(@RequestBody String json){
+    NameCommand command = new Gson().fromJson(json, NameCommand.class)
+    log.info "Sending email: ${command.dump()}"
+
+    if(!validator.isValid(command)){
+      return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST);
+    }
+    log.info MessageType."${command.type}"
+    NewUserBean bean = new NewUserBean()
+    bean.setEmail(command.getEmail())
+    bean.setName(command.getName())
+    bean.setCompany(command.getCompany())
+    bean.setType(MessageType."${command.type}")
+    messageDispatcher.message(bean)
+    return new ResponseEntity<String>("OK", HttpStatus.OK)
+  }
+
 }
