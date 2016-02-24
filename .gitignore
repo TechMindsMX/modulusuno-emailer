@@ -2,3 +2,4 @@
 services/src/test/resources/config/
 web/src/main/resources/config/
 web/src/main/resources/*.properties
+.DS_Store
