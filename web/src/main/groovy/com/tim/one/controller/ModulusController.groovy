@@ -90,4 +90,65 @@ class ModulusController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
   }
 
+
+  @RequestMapping(method = POST, value = "/newUser")
+  @ResponseBody
+  public ResponseEntity<String> newUser(@RequestBody String json){
+    NameCommand command = new Gson().fromJson(json, NameCommand.class)
+    log.info "Sending email: ${command.dump()}"
+
+    if(!validator.isValid(command)){
+      return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST);
+    }
+
+    NewUserBean bean = new NewUserBean()
+    bean.setEmail(properties.getProperty(ApplicationConstants.INTEGRADORA_ADMIN));
+    bean.setName(command.getName())
+    bean.setType(MessageType."${command.type}")
+    messageDispatcher.message(bean)
+    return new ResponseEntity<String>("OK", HttpStatus.OK)
+  }
+
+  @RequestMapping(method = POST, value = "/forgot")
+  @ResponseBody
+  public ResponseEntity<String> forgot(@RequestBody String json){
+    ForgotPasswordCommand command = new Gson().fromJson(json, ForgotPasswordCommand.class)
+    log.info "Sending email: ${command.dump()}"
+
+    if(!validator.isValid(command)){
+      return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST)
+    }
+
+    ForgotPasswordBean bean = new ForgotPasswordBean()
+    bean.setToken(command.getToken())
+    bean.setEmail(command.getEmail())
+    bean.setType(MessageType.FORGOT_PASSWORD_MODULUS)
+    messageDispatcher.message(bean)
+    return new ResponseEntity<String>("OK", HttpStatus.OK)
+  }
+
+  @RequestMapping(method = POST, value = "/depositOrder")
+  @ResponseBody
+  public ResponseEntity<String> depositOrderByCompany(@RequestBody String json){
+    DepositOrderCommand command = new Gson().fromJson(json, DepositOrderCommand.class)
+    log.info "Sending email: ${command.dump()}"
+
+    if(!validator.isValid(command)){
+      return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST)
+    }
+
+    DepositOrderBean bean = new DepositOrderBean()
+    bean.setEmail(command.email)
+    bean.setName(command.name)
+    bean.setAccount(command.account)
+    bean.setMessage(command.message)
+    bean.setBank(command.bank)
+    bean.setAccountBank(command.accountBank)
+    bean.setUrl(command.url)
+    bean.setType(MessageType.DEPOSIT_ORDER_MODULUS)
+    messageDispatcher.message(bean)
+    return new ResponseEntity<String>("OK", HttpStatus.OK)
+
+  }
+
 }
