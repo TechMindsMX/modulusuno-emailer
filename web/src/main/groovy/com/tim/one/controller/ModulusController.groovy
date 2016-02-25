@@ -190,4 +190,24 @@ class ModulusController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
   }
 
+  @RequestMapping(method = POST, value = "/authorizeSaleOrder")
+  @ResponseBody
+  public ResponseEntity<String> authorizeSaleOrder(@RequestBody String json){
+    SaleOrderCommand command = new Gson().fromJson(json, SaleOrderCommand.class)
+    log.info "Sending email: ${command.dump()}"
+
+    if(!validator.isValid(command)){
+      return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST);
+    }
+
+    SaleOrderBean bean = new SaleOrderBean()
+    bean.setEmail(command.email)
+    bean.setName(command.name)
+    bean.setRfc(command.rfc)
+    bean.setUrl(command.url)
+    bean.setType(MessageType.SALE_ORDER_MODULUS)
+    messageDispatcher.message(bean)
+    return new ResponseEntity<String>("OK", HttpStatus.OK)
+  }
+
 }
