@@ -79,7 +79,7 @@ public class ValuarteController {
     ForgotPasswordBean bean = new ForgotPasswordBean()
     bean.setToken(command.getToken())
     bean.setEmail(command.getEmail())
-    bean.setType(MessageType.FORGOT_PASSWORD)
+    bean.setType(MessageType.FORGOT_PASSWORD_VALUARTE)
     messageDispatcher.message(bean)
     return new ResponseEntity<String>("OK", HttpStatus.OK)
 	}
