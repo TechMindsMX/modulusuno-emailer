@@ -55,4 +55,8 @@
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
 		p:prefix="/WEB-INF/jsp/" />
 
+  <bean name="/applicationSwaggerConfig" class="com.tim.one.web.config.ApplicationSwaggerConfig"/>
+  <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/"/>
+  <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
+
 </beans>
