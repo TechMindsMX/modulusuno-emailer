@@ -47,10 +47,9 @@ class IntegradoraController {
 
   Log log = LogFactory.getLog(getClass())
 
-  @RequestMapping(method = POST, value = "/newUser")
+  @RequestMapping(method = POST, value = "/newUser", consumes="application/json")
   @ResponseBody
-  ResponseEntity<String> newUser(@RequestBody String json){
-    NameCommand command = new Gson().fromJson(json, NameCommand.class)
+  ResponseEntity<String> newUser(@RequestBody NameCommand command){
     log.info "Sending email: ${command.dump()}"
 
     if(!validator.isValid(command)){
