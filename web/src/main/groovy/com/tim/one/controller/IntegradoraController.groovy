@@ -49,7 +49,7 @@ class IntegradoraController {
 
   @RequestMapping(method = POST, value = "/newUser")
   @ResponseBody
-  public ResponseEntity<String> newUser(@RequestBody String json){
+  ResponseEntity<String> newUser(@RequestBody String json){
     NameCommand command = new Gson().fromJson(json, NameCommand.class)
     log.info "Sending email: ${command.dump()}"
 
@@ -67,7 +67,7 @@ class IntegradoraController {
 
   @RequestMapping(method = POST, value = "/register")
   @ResponseBody
-  public ResponseEntity<String> register(@RequestBody String json){
+  ResponseEntity<String> register(@RequestBody String json){
     RegisterCommand command = new Gson().fromJson(json, RegisterCommand.class)
     log.info "Sending email: ${command.dump()}"
 
@@ -85,7 +85,7 @@ class IntegradoraController {
 
   @RequestMapping(method = POST, value = "/forgot")
   @ResponseBody
-  public ResponseEntity<String> forgot(@RequestBody String json){
+  ResponseEntity<String> forgot(@RequestBody String json){
     ForgotPasswordCommand command = new Gson().fromJson(json, ForgotPasswordCommand.class)
     log.info "Sending email: ${command.dump()}"
 
@@ -103,7 +103,7 @@ class IntegradoraController {
 
   @RequestMapping(method = POST, value = "/depositOrder")
   @ResponseBody
-  public ResponseEntity<String> depositOrderByCompany(@RequestBody String json){
+  ResponseEntity<String> depositOrderByCompany(@RequestBody String json){
     DepositOrderCommand command = new Gson().fromJson(json, DepositOrderCommand.class)
     log.info "Sending email: ${command.dump()}"
 
@@ -127,7 +127,7 @@ class IntegradoraController {
 
   @RequestMapping(method = POST, value = "/companyIntegrated")
   @ResponseBody
-  public ResponseEntity<String> companyAssignedBuyer(@RequestBody String json){
+  ResponseEntity<String> companyAssignedBuyer(@RequestBody String json){
     CompanyIntegratedCommand command = new Gson().fromJson(json, CompanyIntegratedCommand.class)
     log.info "Sending email: ${command.dump()}"
 
@@ -147,7 +147,7 @@ class IntegradoraController {
 
   @RequestMapping(method = POST, value = "/clientProvider")
   @ResponseBody
-  public ResponseEntity<String> clientProvider(@RequestBody String json){
+  ResponseEntity<String> clientProvider(@RequestBody String json){
     NameCommand command = new Gson().fromJson(json, NameCommand.class)
     log.info "Sending email: ${command.dump()}"
 
@@ -166,7 +166,7 @@ class IntegradoraController {
 
   @RequestMapping(method = POST, value = "/authorizeSaleOrder")
   @ResponseBody
-  public ResponseEntity<String> authorizeSaleOrder(@RequestBody String json){
+  ResponseEntity<String> authorizeSaleOrder(@RequestBody String json){
     SaleOrderCommand command = new Gson().fromJson(json, SaleOrderCommand.class)
     log.info "Sending email: ${command.dump()}"
 
