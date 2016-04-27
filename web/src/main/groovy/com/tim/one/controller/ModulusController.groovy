@@ -34,6 +34,8 @@ import com.tim.one.command.DepositOrderCommand
 import com.tim.one.bean.DepositOrderBean
 import com.tim.one.command.SaleOrderCommand
 import com.tim.one.bean.SaleOrderBean
+import com.tim.one.command.ProcessorPayrollCommand
+import com.tim.one.bean.ProcessorPayrollBean
 
 /**
  * @author josdem
@@ -146,6 +148,25 @@ class ModulusController {
     bean.setAccountBank(command.accountBank)
     bean.setUrl(command.url)
     bean.setType(MessageType.DEPOSIT_ORDER_MODULUS)
+    messageDispatcher.message(bean)
+    return new ResponseEntity<String>("OK", HttpStatus.OK)
+
+  }
+  @RequestMapping(method = POST, value = "/processorPayrolls")
+  @ResponseBody
+  public ResponseEntity<String> processorPayrolls(@RequestBody String json){
+    ProcessorPayrollCommand command = new Gson().fromJson(json, ProcessorPayrollCommand.class)
+    log.info "Sending email: ${command.dump()}"
+
+    if(!validator.isValid(command)){
+      return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST)
+    }
+
+    ProcessorPayrollBean bean = new ProcessorPayrollBean()
+    bean.setEmail(command.emailResponse)
+    bean.setMessage(command.message)
+    bean.setUrl(command.url)
+    bean.setType(MessageType.PROCESSOR_PAYROLL)
     messageDispatcher.message(bean)
     return new ResponseEntity<String>("OK", HttpStatus.OK)
 
