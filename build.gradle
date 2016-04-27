@@ -7,6 +7,12 @@ def springfoxVersion = '2.3.1'
 def currentEnvironment = project.hasProperty("environment")?environment:"development"
 def timoneConfigurationDir = "${System.getProperty('user.home')}/.emailer"
 
+buildscript {
+  repositories {
+    jcenter()
+  }
+}
+
 subprojects {
   apply plugin:'groovy'
   version = "0.0.1"
