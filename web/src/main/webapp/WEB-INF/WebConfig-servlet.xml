@@ -51,11 +51,12 @@
 		<property name="maxUploadSize" value="1000000" />
 	</bean>
 
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-		p:prefix="/WEB-INF/jsp/" />
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <property name="prefix" value="/WEB-INF/jsp/"/>
+    <property name="suffix" value=".jsp"/>
+  </bean>
 
-  <bean name="/applicationSwaggerConfig" class="com.tim.one.web.config.ApplicationSwaggerConfig"/>
+  <bean name="/applicationSwaggerConfig" class="com.tim.one.config.ApplicationSwaggerConfig"/>
   <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/"/>
   <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
 
