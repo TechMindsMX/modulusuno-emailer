@@ -33,7 +33,7 @@ import com.tim.one.bean.SaleOrderBean
 import org.apache.commons.logging.Log
 import org.apache.commons.logging.LogFactory
 
-@Api(description="knows how receive manage integra user requests")
+@Api(description="knows how manage integra user requests to send emails")
 @Controller
 @RequestMapping("/services/modulusuno/emailer/*")
 class IntegradoraController {
