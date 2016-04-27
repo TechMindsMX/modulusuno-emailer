@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
 import org.springframework.http.HttpStatus
 import com.google.gson.Gson
+import io.swagger.annotations.Api
 
 import com.tim.one.command.NewUserCommand
 import com.tim.one.command.NameCommand
@@ -32,8 +33,9 @@ import com.tim.one.bean.SaleOrderBean
 import org.apache.commons.logging.Log
 import org.apache.commons.logging.LogFactory
 
+@Api(description="knows how receive manage integra user requests")
 @Controller
-@RequestMapping("/modulusuno/emailer/*")
+@RequestMapping("/services/modulusuno/emailer/*")
 class IntegradoraController {
 
   @Autowired
