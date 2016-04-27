@@ -1,4 +1,4 @@
-package com.tim.one.web.config
+package com.tim.one.config
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2
 
