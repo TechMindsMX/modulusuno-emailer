@@ -119,8 +119,7 @@ class IntegradoraController {
 
   @RequestMapping(method = POST, value = "/depositOrder")
   @ResponseBody
-  ResponseEntity<String> depositOrderByCompany(@RequestBody String json){
-    DepositOrderCommand command = new Gson().fromJson(json, DepositOrderCommand.class)
+  ResponseEntity<String> depositOrderByCompany(@RequestBody DepositOrderCommand command){
     log.info "Sending email: ${command.dump()}"
 
     if(!validator.isValid(command)){
@@ -143,8 +142,7 @@ class IntegradoraController {
 
   @RequestMapping(method = POST, value = "/companyIntegrated")
   @ResponseBody
-  ResponseEntity<String> companyAssignedBuyer(@RequestBody String json){
-    CompanyIntegratedCommand command = new Gson().fromJson(json, CompanyIntegratedCommand.class)
+  ResponseEntity<String> companyAssignedBuyer(@RequestBody CompanyIntegratedCommand command){
     log.info "Sending email: ${command.dump()}"
 
     if(!validator.isValid(command)){
@@ -163,8 +161,7 @@ class IntegradoraController {
 
   @RequestMapping(method = POST, value = "/clientProvider")
   @ResponseBody
-  ResponseEntity<String> clientProvider(@RequestBody String json){
-    NameCommand command = new Gson().fromJson(json, NameCommand.class)
+  ResponseEntity<String> clientProvider(@RequestBody NameCommand command){
     log.info "Sending email: ${command.dump()}"
 
     if(!validator.isValid(command)){
@@ -182,8 +179,7 @@ class IntegradoraController {
 
   @RequestMapping(method = POST, value = "/authorizeSaleOrder")
   @ResponseBody
-  ResponseEntity<String> authorizeSaleOrder(@RequestBody String json){
-    SaleOrderCommand command = new Gson().fromJson(json, SaleOrderCommand.class)
+  ResponseEntity<String> authorizeSaleOrder(@RequestBody SaleOrderCommand command){
     log.info "Sending email: ${command.dump()}"
 
     if(!validator.isValid(command)){
