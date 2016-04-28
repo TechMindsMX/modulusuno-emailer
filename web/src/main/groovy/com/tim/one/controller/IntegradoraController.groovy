@@ -67,7 +67,6 @@ class IntegradoraController {
   @RequestMapping(method = POST, value = "/register")
   @ResponseBody
   ResponseEntity<String> register(@RequestBody RegisterCommand command){
-    RegisterCommand command = new Gson().fromJson(json, RegisterCommand.class)
     log.info "Sending email: ${command.dump()}"
 
     if(!validator.isValid(command)){
