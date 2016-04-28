@@ -97,8 +97,7 @@ class IntegradoraController {
 
   @RequestMapping(method = POST, value = "/forgot")
   @ResponseBody
-  ResponseEntity<String> forgot(@RequestBody String json){
-    ForgotPasswordCommand command = new Gson().fromJson(json, ForgotPasswordCommand.class)
+  ResponseEntity<String> forgot(@RequestBody ForgotPasswordCommand command){
     log.info "Sending email: ${command.dump()}"
 
     if(!validator.isValid(command)){
