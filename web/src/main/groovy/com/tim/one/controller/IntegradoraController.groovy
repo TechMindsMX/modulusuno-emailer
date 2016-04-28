@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller
 import org.springframework.http.HttpStatus
 import com.google.gson.Gson
 import io.swagger.annotations.Api
+import io.swagger.annotations.ApiImplicitParam
+import io.swagger.annotations.ApiImplicitParams
 
 import com.tim.one.command.NewUserCommand
 import com.tim.one.command.NameCommand
@@ -46,6 +48,13 @@ class IntegradoraController {
   Properties properties
 
   Log log = LogFactory.getLog(getClass())
+
+  @ApiImplicitParams([
+        @ApiImplicitParam(name = "name", value = "User", required = true, dataType = "string", paramType = "query"),
+        @ApiImplicitParam(name = "company", value = "Company", required = true, dataType = "string", paramType = "query"),
+        @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+        @ApiImplicitParam(name = "type", value = "Lead Type", required = true, dataType = "string", paramType = "query", allowableValues = "NEW_USER")
+  ])
 
   @RequestMapping(method = POST, value = "/newUser")
   @ResponseBody
