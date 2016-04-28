@@ -58,6 +58,12 @@ class ModulusController {
 
 	Log log = LogFactory.getLog(getClass())
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "name", value = "Name", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "account", value = "Account", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "stpAccount", value = "STP Account", required = true, dataType = "string", paramType = "query")
+  ])
 	@RequestMapping(method = POST, value = "/createAccount")
 	@ResponseBody
 	ResponseEntity<String> createAccount(@RequestBody AccountCommand command){
@@ -77,6 +83,10 @@ class ModulusController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
 	}
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "token", value = "Token", required = true, dataType = "string", paramType = "query")
+  ])
 	@RequestMapping(method = POST, value = "/register")
   @ResponseBody
   ResponseEntity<String> register(@RequestBody RegisterCommand command){
@@ -94,7 +104,12 @@ class ModulusController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
   }
 
-
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "name", value = "Name", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "company", value = "Company", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "type", value = "Lead Type", required = true, dataType = "string", paramType = "query")
+  ])
   @RequestMapping(method = POST, value = "/newUser")
   @ResponseBody
   ResponseEntity<String> newUser(@RequestBody NameCommand command){
@@ -112,6 +127,10 @@ class ModulusController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
   }
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "token", value = "Token", required = true, dataType = "string", paramType = "query")
+  ])
   @RequestMapping(method = POST, value = "/forgot")
   @ResponseBody
   ResponseEntity<String> forgot(@RequestBody ForgotPasswordCommand command){
@@ -129,6 +148,15 @@ class ModulusController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
   }
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "name", value = "Name", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "account", value = "Account", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "message", value = "Message", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "bank", value = "Bank", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "accountBank", value = "Bank Account", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "url", value = "Url", required = true, dataType = "string", paramType = "query")
+  ])
   @RequestMapping(method = POST, value = "/depositOrder")
   @ResponseBody
   ResponseEntity<String> depositOrderByCompany(@RequestBody DepositOrderCommand command){
@@ -152,6 +180,11 @@ class ModulusController {
 
   }
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "emailResponse", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "message", value = "Message", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "url", value = "Url", required = true, dataType = "string", paramType = "query")
+  ])
   @RequestMapping(method = POST, value = "/processorPayrolls")
   @ResponseBody
   ResponseEntity<String> processorPayrolls(@RequestBody ProcessorPayrollCommand command){
@@ -168,9 +201,14 @@ class ModulusController {
     bean.setType(MessageType.PROCESSOR_PAYROLL)
     messageDispatcher.message(bean)
     return new ResponseEntity<String>("OK", HttpStatus.OK)
-
   }
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "emailResponse", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "nameCompany", value = "Company", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "message", value = "Message", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "url", value = "Url", required = true, dataType = "string", paramType = "query")
+  ])
   @RequestMapping(method = POST, value = "/companyIntegrated")
   @ResponseBody
   ResponseEntity<String> companyAssignedBuyer(@RequestBody CompanyIntegratedCommand command){
@@ -190,6 +228,12 @@ class ModulusController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
   }
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "name", value = "Name", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "company", value = "Company", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "type", value = "Lead Type", required = true, dataType = "string", paramType = "query")
+  ])
   @RequestMapping(method = POST, value = "/clientProvider")
   @ResponseBody
   ResponseEntity<String> clientProvider(@RequestBody NameCommand command){
@@ -208,6 +252,13 @@ class ModulusController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
   }
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "name", value = "Name", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "rfc", value = "RFC", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "url", value = "Url", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "type", value = "Lead Type", required = true, dataType = "string", paramType = "query")
+  ])
   @RequestMapping(method = POST, value = "/authorizeSaleOrder")
   @ResponseBody
   ResponseEntity<String> authorizeSaleOrder(@RequestBody SaleOrderCommand command){
