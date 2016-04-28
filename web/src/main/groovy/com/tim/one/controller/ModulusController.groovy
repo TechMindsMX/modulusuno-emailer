@@ -13,6 +13,9 @@ import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseBody
+import io.swagger.annotations.Api
+import io.swagger.annotations.ApiImplicitParams
+import io.swagger.annotations.ApiImplicitParam
 
 import com.google.gson.Gson
 import com.tim.one.bean.ErrorCode
@@ -43,8 +46,9 @@ import com.tim.one.bean.ProcessorPayrollBean
  *
  */
 
+@Api(description = "Know how manage modulusweb user request to send mails")
 @Controller
-@RequestMapping("/modulus/*")
+@RequestMapping("/services/modulus/*")
 class ModulusController {
 
 	@Autowired
@@ -56,8 +60,7 @@ class ModulusController {
 
 	@RequestMapping(method = POST, value = "/createAccount")
 	@ResponseBody
-	ResponseEntity<String> createAccount(@RequestBody String json){
-		AccountCommand command = new Gson().fromJson(json, AccountCommand.class)
+	ResponseEntity<String> createAccount(@RequestBody AccountCommand command){
 		log.info "Sending contact email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
@@ -76,8 +79,7 @@ class ModulusController {
 
 	@RequestMapping(method = POST, value = "/register")
   @ResponseBody
-  public ResponseEntity<String> register(@RequestBody String json){
-    RegisterCommand command = new Gson().fromJson(json, RegisterCommand.class)
+  ResponseEntity<String> register(@RequestBody RegisterCommand command){
     log.info "Sending email: ${command.dump()}"
 
     if(!validator.isValid(command)){
@@ -95,8 +97,7 @@ class ModulusController {
 
   @RequestMapping(method = POST, value = "/newUser")
   @ResponseBody
-  public ResponseEntity<String> newUser(@RequestBody String json){
-    NameCommand command = new Gson().fromJson(json, NameCommand.class)
+  ResponseEntity<String> newUser(@RequestBody NameCommand command){
     log.info "Sending email: ${command.dump()}"
 
     if(!validator.isValid(command)){
@@ -113,8 +114,7 @@ class ModulusController {
 
   @RequestMapping(method = POST, value = "/forgot")
   @ResponseBody
-  public ResponseEntity<String> forgot(@RequestBody String json){
-    ForgotPasswordCommand command = new Gson().fromJson(json, ForgotPasswordCommand.class)
+  ResponseEntity<String> forgot(@RequestBody ForgotPasswordCommand command){
     log.info "Sending email: ${command.dump()}"
 
     if(!validator.isValid(command)){
@@ -131,8 +131,7 @@ class ModulusController {
 
   @RequestMapping(method = POST, value = "/depositOrder")
   @ResponseBody
-  public ResponseEntity<String> depositOrderByCompany(@RequestBody String json){
-    DepositOrderCommand command = new Gson().fromJson(json, DepositOrderCommand.class)
+  ResponseEntity<String> depositOrderByCompany(@RequestBody DepositOrderCommand command){
     log.info "Sending email: ${command.dump()}"
 
     if(!validator.isValid(command)){
@@ -152,10 +151,10 @@ class ModulusController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
 
   }
+
   @RequestMapping(method = POST, value = "/processorPayrolls")
   @ResponseBody
-  public ResponseEntity<String> processorPayrolls(@RequestBody String json){
-    ProcessorPayrollCommand command = new Gson().fromJson(json, ProcessorPayrollCommand.class)
+  ResponseEntity<String> processorPayrolls(@RequestBody ProcessorPayrollCommand command){
     log.info "Sending email: ${command.dump()}"
 
     if(!validator.isValid(command)){
@@ -174,8 +173,7 @@ class ModulusController {
 
   @RequestMapping(method = POST, value = "/companyIntegrated")
   @ResponseBody
-  public ResponseEntity<String> companyAssignedBuyer(@RequestBody String json){
-    CompanyIntegratedCommand command = new Gson().fromJson(json, CompanyIntegratedCommand.class)
+  ResponseEntity<String> companyAssignedBuyer(@RequestBody CompanyIntegratedCommand command){
     log.info "Sending email: ${command.dump()}"
 
     if(!validator.isValid(command)){
@@ -194,8 +192,7 @@ class ModulusController {
 
   @RequestMapping(method = POST, value = "/clientProvider")
   @ResponseBody
-  public ResponseEntity<String> clientProvider(@RequestBody String json){
-    NameCommand command = new Gson().fromJson(json, NameCommand.class)
+  ResponseEntity<String> clientProvider(@RequestBody NameCommand command){
     log.info "Sending email: ${command.dump()}"
 
     if(!validator.isValid(command)){
@@ -213,8 +210,7 @@ class ModulusController {
 
   @RequestMapping(method = POST, value = "/authorizeSaleOrder")
   @ResponseBody
-  public ResponseEntity<String> authorizeSaleOrder(@RequestBody String json){
-    SaleOrderCommand command = new Gson().fromJson(json, SaleOrderCommand.class)
+  ResponseEntity<String> authorizeSaleOrder(@RequestBody SaleOrderCommand command){
     log.info "Sending email: ${command.dump()}"
 
     if(!validator.isValid(command)){
