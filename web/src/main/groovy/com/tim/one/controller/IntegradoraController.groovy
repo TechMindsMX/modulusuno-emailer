@@ -73,6 +73,11 @@ class IntegradoraController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
   }
 
+  @ApiImplicitParams([
+        @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+        @ApiImplicitParam(name = "token", value = "Token", required = true, dataType = "string", paramType = "query")
+  ])
+
   @RequestMapping(method = POST, value = "/register")
   @ResponseBody
   ResponseEntity<String> register(@RequestBody RegisterCommand command){
