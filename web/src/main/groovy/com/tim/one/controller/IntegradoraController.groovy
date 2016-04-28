@@ -50,12 +50,11 @@ class IntegradoraController {
   Log log = LogFactory.getLog(getClass())
 
   @ApiImplicitParams([
-        @ApiImplicitParam(name = "name", value = "User", required = true, dataType = "string", paramType = "query"),
-        @ApiImplicitParam(name = "company", value = "Company", required = true, dataType = "string", paramType = "query"),
-        @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
-        @ApiImplicitParam(name = "type", value = "Lead Type", required = true, dataType = "string", paramType = "query", allowableValues = "NEW_USER")
+    @ApiImplicitParam(name = "name", value = "User", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "company", value = "Company", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "type", value = "Lead Type", required = true, dataType = "string", paramType = "query", allowableValues = "NEW_USER")
   ])
-
   @RequestMapping(method = POST, value = "/newUser")
   @ResponseBody
   ResponseEntity<String> newUser(@RequestBody NameCommand command){
@@ -74,10 +73,9 @@ class IntegradoraController {
   }
 
   @ApiImplicitParams([
-        @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
-        @ApiImplicitParam(name = "token", value = "Token", required = true, dataType = "string", paramType = "query")
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "token", value = "Token", required = true, dataType = "string", paramType = "query")
   ])
-
   @RequestMapping(method = POST, value = "/register")
   @ResponseBody
   ResponseEntity<String> register(@RequestBody RegisterCommand command){
@@ -96,10 +94,9 @@ class IntegradoraController {
   }
 
   @ApiImplicitParams([
-        @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
-        @ApiImplicitParam(name = "token", value = "Token", required = true, dataType = "string", paramType = "query")
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "token", value = "Token", required = true, dataType = "string", paramType = "query")
   ])
-
   @RequestMapping(method = POST, value = "/forgot")
   @ResponseBody
   ResponseEntity<String> forgot(@RequestBody ForgotPasswordCommand command){
@@ -117,6 +114,15 @@ class IntegradoraController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
   }
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "name", value = "Name", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "account", value = "Account", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "message", value = "Message", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "bank", value = "Bank", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "accountBank", value = "Account Bank", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "url", value = "Url", required = true, dataType = "string", paramType = "query")
+  ])
   @RequestMapping(method = POST, value = "/depositOrder")
   @ResponseBody
   ResponseEntity<String> depositOrderByCompany(@RequestBody DepositOrderCommand command){
@@ -140,6 +146,12 @@ class IntegradoraController {
 
   }
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "emailResponse", value = "Email response", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "nameCompany", value = "Company name", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "message", value = "Message", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "url", value = "Url", required = true, dataType = "string", paramType = "query")
+  ])
   @RequestMapping(method = POST, value = "/companyIntegrated")
   @ResponseBody
   ResponseEntity<String> companyAssignedBuyer(@RequestBody CompanyIntegratedCommand command){
@@ -159,6 +171,12 @@ class IntegradoraController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
   }
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "name", value = "User", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "company", value = "Company", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "type", value = "Lead Type", required = true, dataType = "string", paramType = "query")
+  ])
   @RequestMapping(method = POST, value = "/clientProvider")
   @ResponseBody
   ResponseEntity<String> clientProvider(@RequestBody NameCommand command){
@@ -177,6 +195,13 @@ class IntegradoraController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
   }
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "name", value = "Name", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "rfc", value = "RFC", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "url", value = "Url", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "type", value = "Lead Type", required = true, dataType = "string", paramType = "query")
+  ])
   @RequestMapping(method = POST, value = "/authorizeSaleOrder")
   @ResponseBody
   ResponseEntity<String> authorizeSaleOrder(@RequestBody SaleOrderCommand command){
