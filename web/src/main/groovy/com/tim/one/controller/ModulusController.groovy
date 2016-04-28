@@ -48,7 +48,7 @@ import com.tim.one.bean.ProcessorPayrollBean
 
 @Api(description = "Know how manage modulusweb user request to send mails")
 @Controller
-@RequestMapping("/modulus/*")
+@RequestMapping("/services/modulus/*")
 class ModulusController {
 
 	@Autowired
@@ -151,6 +151,7 @@ class ModulusController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
 
   }
+
   @RequestMapping(method = POST, value = "/processorPayrolls")
   @ResponseBody
   ResponseEntity<String> processorPayrolls(@RequestBody ProcessorPayrollCommand command){
