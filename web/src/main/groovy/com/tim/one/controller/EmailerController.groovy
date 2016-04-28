@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseBody
 import org.springframework.web.bind.annotation.ResponseStatus
 import io.swagger.annotations.Api
+import io.swagger.annotations.ApiImplicitParam
+import io.swagger.annotations.ApiImplicitParams
 
 import com.google.gson.Gson
 import com.tim.one.bean.ErrorCode
@@ -41,6 +43,11 @@ public class EmailerController {
 	private CommandValidator validator
 
 	private Log log = LogFactory.getLog(getClass())
+
+  @ApiImplicitParams([
+      @ApiImplicitParam(name = "email", value = "Email which send message", required = true, dataType = "string", paramType = "query"),
+      @ApiImplicitParam(name = "message", value = "Message to send", required = true, dataType = "string", paramType = "query")
+        ])
 
   @RequestMapping(method = POST, value = "/message", consumes="application/json")
   @ResponseStatus(HttpStatus.OK)
