@@ -33,7 +33,7 @@ import com.tim.one.bean.SaleOrderBean
 import org.apache.commons.logging.Log
 import org.apache.commons.logging.LogFactory
 
-@Api(description="knows how manage integra user requests to send emails")
+@Api(description="knows how manage integra user requests to send mails")
 @Controller
 @RequestMapping("/services/modulusuno/emailer/*")
 class IntegradoraController {
@@ -47,7 +47,7 @@ class IntegradoraController {
 
   Log log = LogFactory.getLog(getClass())
 
-  @RequestMapping(method = POST, value = "/newUser", consumes="application/json")
+  @RequestMapping(method = POST, value = "/newUser")
   @ResponseBody
   ResponseEntity<String> newUser(@RequestBody NameCommand command){
     log.info "Sending email: ${command.dump()}"
@@ -66,7 +66,7 @@ class IntegradoraController {
 
   @RequestMapping(method = POST, value = "/register")
   @ResponseBody
-  ResponseEntity<String> register(@RequestBody String json){
+  ResponseEntity<String> register(@RequestBody RegisterCommand command){
     RegisterCommand command = new Gson().fromJson(json, RegisterCommand.class)
     log.info "Sending email: ${command.dump()}"
 
