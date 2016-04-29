@@ -51,6 +51,10 @@ class TalentuaController {
 
 	private Log log = LogFactory.getLog(getClass())
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "token", value = "Token", required = true, dataType = "string", paramType = "query")
+  ])
 	@RequestMapping(method = POST, value = "/forgotPassword")
 	@ResponseBody
 	ResponseEntity<String> forgotPassword(@RequestBody ForgotPasswordCommand command){
@@ -68,6 +72,10 @@ class TalentuaController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
 	}
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "token", value = "Token", required = true, dataType = "string", paramType = "query")
+  ])
 	@RequestMapping(method = POST, value = "/register")
 	@ResponseBody
 	ResponseEntity<String> register(@RequestBody RegisterCommand command){
@@ -85,6 +93,10 @@ class TalentuaController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
 	}
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "name", value = "Name", required = true, dataType = "string", paramType = "query")
+  ])
 	@RequestMapping(method = POST, value = "/newUser")
 	@ResponseBody
 	ResponseEntity<String> newUser(@RequestBody NewUserCommand command){
@@ -102,6 +114,10 @@ class TalentuaController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
 	}
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "name", value = "Name", required = true, dataType = "string", paramType = "query")
+  ])
 	@RequestMapping(method = POST, value = "/forgotUsername")
 	@ResponseBody
 	ResponseEntity<String> forgotUsername(@RequestBody NewUserCommand command){
@@ -119,6 +135,13 @@ class TalentuaController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
 	}
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "name", value = "Name", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "reference", value = "Reference", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "emailOptional", value = "Optional Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "note", value = "Note", required = true, dataType = "string", paramType = "query")
+  ])
 	@RequestMapping(method = POST, value = "/musicianAssignedFacilitator")
 	@ResponseBody
 	ResponseEntity<String> musicianAssignedFacilitator(@RequestBody AssignationCommand command){
@@ -137,6 +160,13 @@ class TalentuaController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
 	}
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "name", value = "Name", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "reference", value = "Reference", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "emailOptional", value = "Optional Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "note", value = "Note", required = true, dataType = "string", paramType = "query")
+  ])
 	@RequestMapping(method = POST, value = "/musicianAssignedUser")
 	@ResponseBody
 	ResponseEntity<String> musicianAssignedUser(@RequestBody AssignationCommand command){
@@ -156,6 +186,13 @@ class TalentuaController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
 	}
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "name", value = "Name", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "reference", value = "Reference", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "emailOptional", value = "Optional Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "note", value = "Note", required = true, dataType = "string", paramType = "query")
+  ])
 	@RequestMapping(method = POST, value = "/musicianRefused")
 	@ResponseBody
 	ResponseEntity<String> musicianRefused(@RequestBody AssignationCommand command){
@@ -175,6 +212,13 @@ class TalentuaController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
 	}
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "name", value = "Name", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "reference", value = "Reference", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "emailOptional", value = "Optional Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "note", value = "Note", required = true, dataType = "string", paramType = "query")
+  ])
 	@RequestMapping(method = POST, value = "/companyAssignedBuyer")
 	@ResponseBody
 	ResponseEntity<String> companyAssignedBuyer(@RequestBody AssignationCommand command){
@@ -193,6 +237,13 @@ class TalentuaController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
 	}
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "name", value = "Name", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "reference", value = "Reference", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "emailOptional", value = "Optional Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "note", value = "Note", required = true, dataType = "string", paramType = "query")
+  ])
 	@RequestMapping(method = POST, value = "/companyAssignedUser")
 	@ResponseBody
 	ResponseEntity<String> companyAssignedUser(@RequestBody AssignationCommand command){
@@ -212,6 +263,13 @@ class TalentuaController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
 	}
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "name", value = "Name", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "reference", value = "Reference", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "emailOptional", value = "Optional Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "note", value = "Note", required = true, dataType = "string", paramType = "query")
+  ])
 	@RequestMapping(method = POST, value = "/companyRefused")
 	@ResponseBody
 	ResponseEntity<String> companyRefused(@RequestBody AssignationCommand command){
@@ -231,6 +289,13 @@ class TalentuaController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
 	}
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "name", value = "Name", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "reference", value = "Reference", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "emailOptional", value = "Optional Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "note", value = "Note", required = true, dataType = "string", paramType = "query")
+  ])
 	@RequestMapping(method = POST, value = "/companyEdited")
 	@ResponseBody
 	ResponseEntity<String> companyEdited(@RequestBody AssignationCommand command){
@@ -249,6 +314,13 @@ class TalentuaController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
 	}
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "name", value = "Name", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "reference", value = "Reference", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "emailOptional", value = "Optional Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "note", value = "Note", required = true, dataType = "string", paramType = "query")
+  ])
 	@RequestMapping(method = POST, value = "/musicianEdited")
 	@ResponseBody
 	ResponseEntity<String> musicianEdited(@RequestBody AssignationCommand command){
