@@ -55,6 +55,8 @@ class ModulusController {
 	MessageService messageDispatcher
 	@Autowired
 	CommandValidator validator
+  @Autowired
+	Properties properties
 
 	Log log = LogFactory.getLog(getClass())
 
