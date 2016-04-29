@@ -10,6 +10,9 @@ import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
 import org.springframework.http.HttpStatus
 import com.google.gson.Gson
+import io.swagger.annotations.Api
+import io.swagger.annotations.ApiImplicitParam
+import io.swagger.annotations.ApiImplicitParams
 
 import com.tim.one.command.NewUserCommand
 import com.tim.one.command.NameCommand
@@ -32,8 +35,9 @@ import com.tim.one.bean.SaleOrderBean
 import org.apache.commons.logging.Log
 import org.apache.commons.logging.LogFactory
 
+@Api(description="knows how manage integra user requests to send mails")
 @Controller
-@RequestMapping("/modulusuno/emailer/*")
+@RequestMapping("/services/modulusuno/emailer/*")
 class IntegradoraController {
 
   @Autowired
@@ -45,10 +49,15 @@ class IntegradoraController {
 
   Log log = LogFactory.getLog(getClass())
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "name", value = "User", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "company", value = "Company", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "type", value = "Lead Type", required = true, dataType = "string", paramType = "query", allowableValues = "NEW_USER")
+  ])
   @RequestMapping(method = POST, value = "/newUser")
   @ResponseBody
-  public ResponseEntity<String> newUser(@RequestBody String json){
-    NameCommand command = new Gson().fromJson(json, NameCommand.class)
+  ResponseEntity<String> newUser(@RequestBody NameCommand command){
     log.info "Sending email: ${command.dump()}"
 
     if(!validator.isValid(command)){
@@ -63,10 +72,13 @@ class IntegradoraController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
   }
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "token", value = "Token", required = true, dataType = "string", paramType = "query")
+  ])
   @RequestMapping(method = POST, value = "/register")
   @ResponseBody
-  public ResponseEntity<String> register(@RequestBody String json){
-    RegisterCommand command = new Gson().fromJson(json, RegisterCommand.class)
+  ResponseEntity<String> register(@RequestBody RegisterCommand command){
     log.info "Sending email: ${command.dump()}"
 
     if(!validator.isValid(command)){
@@ -81,10 +93,13 @@ class IntegradoraController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
   }
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "token", value = "Token", required = true, dataType = "string", paramType = "query")
+  ])
   @RequestMapping(method = POST, value = "/forgot")
   @ResponseBody
-  public ResponseEntity<String> forgot(@RequestBody String json){
-    ForgotPasswordCommand command = new Gson().fromJson(json, ForgotPasswordCommand.class)
+  ResponseEntity<String> forgot(@RequestBody ForgotPasswordCommand command){
     log.info "Sending email: ${command.dump()}"
 
     if(!validator.isValid(command)){
@@ -99,10 +114,18 @@ class IntegradoraController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
   }
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "name", value = "Name", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "account", value = "Account", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "message", value = "Message", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "bank", value = "Bank", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "accountBank", value = "Account Bank", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "url", value = "Url", required = true, dataType = "string", paramType = "query")
+  ])
   @RequestMapping(method = POST, value = "/depositOrder")
   @ResponseBody
-  public ResponseEntity<String> depositOrderByCompany(@RequestBody String json){
-    DepositOrderCommand command = new Gson().fromJson(json, DepositOrderCommand.class)
+  ResponseEntity<String> depositOrderByCompany(@RequestBody DepositOrderCommand command){
     log.info "Sending email: ${command.dump()}"
 
     if(!validator.isValid(command)){
@@ -123,10 +146,15 @@ class IntegradoraController {
 
   }
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "emailResponse", value = "Email response", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "nameCompany", value = "Company name", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "message", value = "Message", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "url", value = "Url", required = true, dataType = "string", paramType = "query")
+  ])
   @RequestMapping(method = POST, value = "/companyIntegrated")
   @ResponseBody
-  public ResponseEntity<String> companyAssignedBuyer(@RequestBody String json){
-    CompanyIntegratedCommand command = new Gson().fromJson(json, CompanyIntegratedCommand.class)
+  ResponseEntity<String> companyAssignedBuyer(@RequestBody CompanyIntegratedCommand command){
     log.info "Sending email: ${command.dump()}"
 
     if(!validator.isValid(command)){
@@ -143,10 +171,15 @@ class IntegradoraController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
   }
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "name", value = "User", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "company", value = "Company", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "type", value = "Lead Type", required = true, dataType = "string", paramType = "query")
+  ])
   @RequestMapping(method = POST, value = "/clientProvider")
   @ResponseBody
-  public ResponseEntity<String> clientProvider(@RequestBody String json){
-    NameCommand command = new Gson().fromJson(json, NameCommand.class)
+  ResponseEntity<String> clientProvider(@RequestBody NameCommand command){
     log.info "Sending email: ${command.dump()}"
 
     if(!validator.isValid(command)){
@@ -162,10 +195,16 @@ class IntegradoraController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
   }
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "name", value = "Name", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "rfc", value = "RFC", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "url", value = "Url", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "type", value = "Lead Type", required = true, dataType = "string", paramType = "query")
+  ])
   @RequestMapping(method = POST, value = "/authorizeSaleOrder")
   @ResponseBody
-  public ResponseEntity<String> authorizeSaleOrder(@RequestBody String json){
-    SaleOrderCommand command = new Gson().fromJson(json, SaleOrderCommand.class)
+  ResponseEntity<String> authorizeSaleOrder(@RequestBody SaleOrderCommand command){
     log.info "Sending email: ${command.dump()}"
 
     if(!validator.isValid(command)){

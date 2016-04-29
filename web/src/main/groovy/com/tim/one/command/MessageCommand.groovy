@@ -6,12 +6,12 @@ import org.hibernate.validator.constraints.Email
 import org.hibernate.validator.constraints.SafeHtml
 
 class MessageCommand implements Command {
-	
+
 	@Email
 	@NotNull
 	String email
-	
+
 	@SafeHtml
 	String message
-	
+
 }

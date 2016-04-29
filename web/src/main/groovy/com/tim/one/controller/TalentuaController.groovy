@@ -13,6 +13,9 @@ import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseBody
+import io.swagger.annotations.Api
+import io.swagger.annotations.ApiImplicitParams
+import io.swagger.annotations.ApiImplicitParam
 
 import com.google.gson.Gson
 import com.tim.one.bean.ErrorCode
@@ -34,9 +37,10 @@ import com.tim.one.constant.ApplicationConstants
  *
  */
 
+@Api(description = "Know how manage talentua user request to send emails")
 @Controller
-@RequestMapping("/email/*")
-public class TalentuaController {
+@RequestMapping("/services/email/*")
+class TalentuaController {
 
 	@Autowired
 	private MessageService messageDispatcher
@@ -47,10 +51,13 @@ public class TalentuaController {
 
 	private Log log = LogFactory.getLog(getClass())
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "token", value = "Token", required = true, dataType = "string", paramType = "query")
+  ])
 	@RequestMapping(method = POST, value = "/forgotPassword")
 	@ResponseBody
-	public ResponseEntity<String> forgotPassword(@RequestBody String json){
-		ForgotPasswordCommand command = new Gson().fromJson(json, ForgotPasswordCommand.class)
+	ResponseEntity<String> forgotPassword(@RequestBody ForgotPasswordCommand command){
 		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
@@ -65,10 +72,13 @@ public class TalentuaController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
 	}
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "token", value = "Token", required = true, dataType = "string", paramType = "query")
+  ])
 	@RequestMapping(method = POST, value = "/register")
 	@ResponseBody
-	public ResponseEntity<String> register(@RequestBody String json){
-		RegisterCommand command = new Gson().fromJson(json, RegisterCommand.class)
+	ResponseEntity<String> register(@RequestBody RegisterCommand command){
 		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
@@ -83,10 +93,13 @@ public class TalentuaController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
 	}
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "name", value = "Name", required = true, dataType = "string", paramType = "query")
+  ])
 	@RequestMapping(method = POST, value = "/newUser")
 	@ResponseBody
-	public ResponseEntity<String> newUser(@RequestBody String json){
-		NewUserCommand command = new Gson().fromJson(json, NewUserCommand.class)
+	ResponseEntity<String> newUser(@RequestBody NewUserCommand command){
 		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
@@ -101,10 +114,13 @@ public class TalentuaController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
 	}
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "name", value = "Name", required = true, dataType = "string", paramType = "query")
+  ])
 	@RequestMapping(method = POST, value = "/forgotUsername")
 	@ResponseBody
-	public ResponseEntity<String> forgotUsername(@RequestBody String json){
-		NewUserCommand command = new Gson().fromJson(json, NewUserCommand.class)
+	ResponseEntity<String> forgotUsername(@RequestBody NewUserCommand command){
 		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
@@ -119,10 +135,16 @@ public class TalentuaController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
 	}
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "name", value = "Name", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "reference", value = "Reference", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "emailOptional", value = "Optional Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "note", value = "Note", required = true, dataType = "string", paramType = "query")
+  ])
 	@RequestMapping(method = POST, value = "/musicianAssignedFacilitator")
 	@ResponseBody
-	public ResponseEntity<String> musicianAssignedFacilitator(@RequestBody String json){
-		AssignationCommand command = new Gson().fromJson(json, AssignationCommand.class)
+	ResponseEntity<String> musicianAssignedFacilitator(@RequestBody AssignationCommand command){
 		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
@@ -138,10 +160,16 @@ public class TalentuaController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
 	}
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "name", value = "Name", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "reference", value = "Reference", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "emailOptional", value = "Optional Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "note", value = "Note", required = true, dataType = "string", paramType = "query")
+  ])
 	@RequestMapping(method = POST, value = "/musicianAssignedUser")
 	@ResponseBody
-	public ResponseEntity<String> musicianAssignedUser(@RequestBody String json){
-		AssignationCommand command = new Gson().fromJson(json, AssignationCommand.class)
+	ResponseEntity<String> musicianAssignedUser(@RequestBody AssignationCommand command){
 		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
@@ -158,10 +186,16 @@ public class TalentuaController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
 	}
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "name", value = "Name", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "reference", value = "Reference", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "emailOptional", value = "Optional Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "note", value = "Note", required = true, dataType = "string", paramType = "query")
+  ])
 	@RequestMapping(method = POST, value = "/musicianRefused")
 	@ResponseBody
-	public ResponseEntity<String> musicianRefused(@RequestBody String json){
-		AssignationCommand command = new Gson().fromJson(json, AssignationCommand.class)
+	ResponseEntity<String> musicianRefused(@RequestBody AssignationCommand command){
 		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
@@ -178,10 +212,16 @@ public class TalentuaController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
 	}
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "name", value = "Name", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "reference", value = "Reference", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "emailOptional", value = "Optional Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "note", value = "Note", required = true, dataType = "string", paramType = "query")
+  ])
 	@RequestMapping(method = POST, value = "/companyAssignedBuyer")
 	@ResponseBody
-	public ResponseEntity<String> companyAssignedBuyer(@RequestBody String json){
-		AssignationCommand command = new Gson().fromJson(json, AssignationCommand.class)
+	ResponseEntity<String> companyAssignedBuyer(@RequestBody AssignationCommand command){
 		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
@@ -197,10 +237,16 @@ public class TalentuaController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
 	}
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "name", value = "Name", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "reference", value = "Reference", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "emailOptional", value = "Optional Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "note", value = "Note", required = true, dataType = "string", paramType = "query")
+  ])
 	@RequestMapping(method = POST, value = "/companyAssignedUser")
 	@ResponseBody
-	public ResponseEntity<String> companyAssignedUser(@RequestBody String json){
-		AssignationCommand command = new Gson().fromJson(json, AssignationCommand.class)
+	ResponseEntity<String> companyAssignedUser(@RequestBody AssignationCommand command){
 		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
@@ -217,10 +263,16 @@ public class TalentuaController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
 	}
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "name", value = "Name", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "reference", value = "Reference", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "emailOptional", value = "Optional Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "note", value = "Note", required = true, dataType = "string", paramType = "query")
+  ])
 	@RequestMapping(method = POST, value = "/companyRefused")
 	@ResponseBody
-	public ResponseEntity<String> companyRefused(@RequestBody String json){
-		AssignationCommand command = new Gson().fromJson(json, AssignationCommand.class)
+	ResponseEntity<String> companyRefused(@RequestBody AssignationCommand command){
 		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
@@ -237,10 +289,16 @@ public class TalentuaController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
 	}
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "name", value = "Name", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "reference", value = "Reference", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "emailOptional", value = "Optional Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "note", value = "Note", required = true, dataType = "string", paramType = "query")
+  ])
 	@RequestMapping(method = POST, value = "/companyEdited")
 	@ResponseBody
-	public ResponseEntity<String> companyEdited(@RequestBody String json){
-		AssignationCommand command = new Gson().fromJson(json, AssignationCommand.class)
+	ResponseEntity<String> companyEdited(@RequestBody AssignationCommand command){
 		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
@@ -256,10 +314,16 @@ public class TalentuaController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
 	}
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "name", value = "Name", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "reference", value = "Reference", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "emailOptional", value = "Optional Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "note", value = "Note", required = true, dataType = "string", paramType = "query")
+  ])
 	@RequestMapping(method = POST, value = "/musicianEdited")
 	@ResponseBody
-	public ResponseEntity<String> musicianEdited(@RequestBody String json){
-		AssignationCommand command = new Gson().fromJson(json, AssignationCommand.class)
+	ResponseEntity<String> musicianEdited(@RequestBody AssignationCommand command){
 		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){

@@ -13,6 +13,10 @@ import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseBody
+import org.springframework.web.bind.annotation.ResponseStatus
+import io.swagger.annotations.Api
+import io.swagger.annotations.ApiImplicitParam
+import io.swagger.annotations.ApiImplicitParams
 
 import com.google.gson.Gson
 import com.tim.one.bean.ErrorCode
@@ -28,8 +32,9 @@ import com.tim.one.validator.CommandValidator
  *
  */
 
+@Api(description="knows how send message to email")
 @Controller
-@RequestMapping("/emailer/*")
+@RequestMapping("/services/emailer/*")
 public class EmailerController {
 
 	@Autowired
@@ -39,10 +44,15 @@ public class EmailerController {
 
 	private Log log = LogFactory.getLog(getClass())
 
-	@RequestMapping(method = POST, value = "/message")
+  @ApiImplicitParams([
+      @ApiImplicitParam(name = "email", value = "Email which send message", required = true, dataType = "string", paramType = "query"),
+      @ApiImplicitParam(name = "message", value = "Message to send", required = true, dataType = "string", paramType = "query")
+        ])
+
+  @RequestMapping(method = POST, value = "/message", consumes="application/json")
+  @ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public ResponseEntity<String> message(@RequestBody String json){
-		MessageCommand command = new Gson().fromJson(json, MessageCommand.class)
+	ResponseEntity<String> message(@RequestBody MessageCommand command){
 		log.info "Sending contact email: ${command.dump()}"
 
 		if(!validator.isValid(command)){

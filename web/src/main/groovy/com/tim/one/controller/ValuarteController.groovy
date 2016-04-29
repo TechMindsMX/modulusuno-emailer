@@ -13,6 +13,9 @@ import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseBody
+import io.swagger.annotations.Api
+import io.swagger.annotations.ApiImplicitParams
+import io.swagger.annotations.ApiImplicitParam
 
 import com.google.gson.Gson
 import com.tim.one.bean.ErrorCode
@@ -31,9 +34,10 @@ import com.tim.one.constant.ApplicationConstants
  *
  */
 
+@Api(description = "Know how manage Valuarte Users requests to send mails")
 @Controller
-@RequestMapping("/valuarte/*")
-public class ValuarteController {
+@RequestMapping("/services/valuarte/*")
+class ValuarteController {
 
 	@Autowired
 	private MessageService messageDispatcher
@@ -44,10 +48,17 @@ public class ValuarteController {
 
 	private Log log = LogFactory.getLog(getClass())
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "name", value = "Name", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "emailOptional", value = "Optional Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "phone", value = "Phone", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "subject", value = "Subject", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "message", value = "Message", required = true, dataType = "string", paramType = "query")
+  ])
 	@RequestMapping(method = POST, value = "/contact")
 	@ResponseBody
-	public ResponseEntity<String> contact(@RequestBody String json){
-		ContactCommand command = new Gson().fromJson(json, ContactCommand.class)
+	ResponseEntity<String> contact(@RequestBody ContactCommand command){
 		log.info "Sending contact email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
@@ -66,10 +77,13 @@ public class ValuarteController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
 	}
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "token", value = "Token", required = true, dataType = "string", paramType = "query")
+  ])
 	@RequestMapping(method = POST, value = "/forgotPassword")
 	@ResponseBody
-	public ResponseEntity<String> forgotPassword(@RequestBody String json){
-		ForgotPasswordCommand command = new Gson().fromJson(json, ForgotPasswordCommand.class)
+	ResponseEntity<String> forgotPassword(@RequestBody ForgotPasswordCommand command){
 		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){

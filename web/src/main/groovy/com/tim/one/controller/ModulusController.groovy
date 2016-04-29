@@ -13,6 +13,9 @@ import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseBody
+import io.swagger.annotations.Api
+import io.swagger.annotations.ApiImplicitParams
+import io.swagger.annotations.ApiImplicitParam
 
 import com.google.gson.Gson
 import com.tim.one.bean.ErrorCode
@@ -36,6 +39,8 @@ import com.tim.one.command.SaleOrderCommand
 import com.tim.one.bean.SaleOrderBean
 import com.tim.one.command.ProcessorPayrollCommand
 import com.tim.one.bean.ProcessorPayrollBean
+import com.tim.one.command.ContactCommand
+import com.tim.one.bean.ContactBean
 
 /**
  * @author josdem
@@ -43,21 +48,29 @@ import com.tim.one.bean.ProcessorPayrollBean
  *
  */
 
+@Api(description = "Know how manage modulusweb user request to send mails")
 @Controller
-@RequestMapping("/modulus/*")
+@RequestMapping("/services/modulus/*")
 class ModulusController {
 
 	@Autowired
 	MessageService messageDispatcher
 	@Autowired
 	CommandValidator validator
+  @Autowired
+	Properties properties
 
 	Log log = LogFactory.getLog(getClass())
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "name", value = "Name", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "account", value = "Account", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "stpAccount", value = "STP Account", required = true, dataType = "string", paramType = "query")
+  ])
 	@RequestMapping(method = POST, value = "/createAccount")
 	@ResponseBody
-	ResponseEntity<String> createAccount(@RequestBody String json){
-		AccountCommand command = new Gson().fromJson(json, AccountCommand.class)
+	ResponseEntity<String> createAccount(@RequestBody AccountCommand command){
 		log.info "Sending contact email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
@@ -74,10 +87,13 @@ class ModulusController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
 	}
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "token", value = "Token", required = true, dataType = "string", paramType = "query")
+  ])
 	@RequestMapping(method = POST, value = "/register")
   @ResponseBody
-  public ResponseEntity<String> register(@RequestBody String json){
-    RegisterCommand command = new Gson().fromJson(json, RegisterCommand.class)
+  ResponseEntity<String> register(@RequestBody RegisterCommand command){
     log.info "Sending email: ${command.dump()}"
 
     if(!validator.isValid(command)){
@@ -92,11 +108,15 @@ class ModulusController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
   }
 
-
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "name", value = "Name", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "company", value = "Company", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "type", value = "Lead Type", required = true, dataType = "string", paramType = "query")
+  ])
   @RequestMapping(method = POST, value = "/newUser")
   @ResponseBody
-  public ResponseEntity<String> newUser(@RequestBody String json){
-    NameCommand command = new Gson().fromJson(json, NameCommand.class)
+  ResponseEntity<String> newUser(@RequestBody NameCommand command){
     log.info "Sending email: ${command.dump()}"
 
     if(!validator.isValid(command)){
@@ -111,10 +131,13 @@ class ModulusController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
   }
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "token", value = "Token", required = true, dataType = "string", paramType = "query")
+  ])
   @RequestMapping(method = POST, value = "/forgot")
   @ResponseBody
-  public ResponseEntity<String> forgot(@RequestBody String json){
-    ForgotPasswordCommand command = new Gson().fromJson(json, ForgotPasswordCommand.class)
+  ResponseEntity<String> forgot(@RequestBody ForgotPasswordCommand command){
     log.info "Sending email: ${command.dump()}"
 
     if(!validator.isValid(command)){
@@ -129,10 +152,18 @@ class ModulusController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
   }
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "name", value = "Name", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "account", value = "Account", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "message", value = "Message", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "bank", value = "Bank", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "accountBank", value = "Bank Account", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "url", value = "Url", required = true, dataType = "string", paramType = "query")
+  ])
   @RequestMapping(method = POST, value = "/depositOrder")
   @ResponseBody
-  public ResponseEntity<String> depositOrderByCompany(@RequestBody String json){
-    DepositOrderCommand command = new Gson().fromJson(json, DepositOrderCommand.class)
+  ResponseEntity<String> depositOrderByCompany(@RequestBody DepositOrderCommand command){
     log.info "Sending email: ${command.dump()}"
 
     if(!validator.isValid(command)){
@@ -152,10 +183,15 @@ class ModulusController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
 
   }
+
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "emailResponse", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "message", value = "Message", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "url", value = "Url", required = true, dataType = "string", paramType = "query")
+  ])
   @RequestMapping(method = POST, value = "/processorPayrolls")
   @ResponseBody
-  public ResponseEntity<String> processorPayrolls(@RequestBody String json){
-    ProcessorPayrollCommand command = new Gson().fromJson(json, ProcessorPayrollCommand.class)
+  ResponseEntity<String> processorPayrolls(@RequestBody ProcessorPayrollCommand command){
     log.info "Sending email: ${command.dump()}"
 
     if(!validator.isValid(command)){
@@ -169,13 +205,17 @@ class ModulusController {
     bean.setType(MessageType.PROCESSOR_PAYROLL)
     messageDispatcher.message(bean)
     return new ResponseEntity<String>("OK", HttpStatus.OK)
-
   }
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "emailResponse", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "nameCompany", value = "Company", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "message", value = "Message", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "url", value = "Url", required = true, dataType = "string", paramType = "query")
+  ])
   @RequestMapping(method = POST, value = "/companyIntegrated")
   @ResponseBody
-  public ResponseEntity<String> companyAssignedBuyer(@RequestBody String json){
-    CompanyIntegratedCommand command = new Gson().fromJson(json, CompanyIntegratedCommand.class)
+  ResponseEntity<String> companyAssignedBuyer(@RequestBody CompanyIntegratedCommand command){
     log.info "Sending email: ${command.dump()}"
 
     if(!validator.isValid(command)){
@@ -192,10 +232,15 @@ class ModulusController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
   }
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "name", value = "Name", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "company", value = "Company", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "type", value = "Lead Type", required = true, dataType = "string", paramType = "query")
+  ])
   @RequestMapping(method = POST, value = "/clientProvider")
   @ResponseBody
-  public ResponseEntity<String> clientProvider(@RequestBody String json){
-    NameCommand command = new Gson().fromJson(json, NameCommand.class)
+  ResponseEntity<String> clientProvider(@RequestBody NameCommand command){
     log.info "Sending email: ${command.dump()}"
 
     if(!validator.isValid(command)){
@@ -211,10 +256,16 @@ class ModulusController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
   }
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "name", value = "Name", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "rfc", value = "RFC", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "url", value = "Url", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "type", value = "Lead Type", required = true, dataType = "string", paramType = "query")
+  ])
   @RequestMapping(method = POST, value = "/authorizeSaleOrder")
   @ResponseBody
-  public ResponseEntity<String> authorizeSaleOrder(@RequestBody String json){
-    SaleOrderCommand command = new Gson().fromJson(json, SaleOrderCommand.class)
+  ResponseEntity<String> authorizeSaleOrder(@RequestBody SaleOrderCommand command){
     log.info "Sending email: ${command.dump()}"
 
     if(!validator.isValid(command)){
@@ -230,5 +281,27 @@ class ModulusController {
     messageDispatcher.message(bean)
     return new ResponseEntity<String>("OK", HttpStatus.OK)
   }
+
+  @RequestMapping(method = POST, value = "/contact", consumes="application/json")
+	@ResponseBody
+	public ResponseEntity<String> contact(@RequestBody ContactCommand command){
+		log.info "Sending contact email: ${command.dump()}"
+
+		if(!validator.isValid(command)){
+	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST)
+		}
+
+		ContactBean bean = new ContactBean()
+    bean.setEmail(properties.getProperty(ApplicationConstants.MODULUSUNO_TARGET))
+    bean.setName(command.getName())
+    bean.setEmailOptional(command.getEmailOptional())
+    bean.setPhone(command.getPhone())
+    bean.setSubject(command.getSubject())
+    bean.setMessage(command.getMessage())
+    bean.setType(MessageType.MODULUS_CONTACT)
+    messageDispatcher.message(bean)
+    return new ResponseEntity<String>("OK", HttpStatus.OK)
+	}
+
 
 }
