@@ -39,6 +39,8 @@ import com.tim.one.command.SaleOrderCommand
 import com.tim.one.bean.SaleOrderBean
 import com.tim.one.command.ProcessorPayrollCommand
 import com.tim.one.bean.ProcessorPayrollBean
+import com.tim.one.command.ContactCommand
+import com.tim.one.bean.ContactBean
 
 /**
  * @author josdem
@@ -296,7 +298,7 @@ class ModulusController {
     bean.setPhone(command.getPhone())
     bean.setSubject(command.getSubject())
     bean.setMessage(command.getMessage())
-    bean.setType(MessageType.CONTACT)
+    bean.setType(MessageType.MODULUS_CONTACT)
     messageDispatcher.message(bean)
     return new ResponseEntity<String>("OK", HttpStatus.OK)
 	}
