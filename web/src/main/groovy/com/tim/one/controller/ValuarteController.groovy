@@ -48,6 +48,14 @@ class ValuarteController {
 
 	private Log log = LogFactory.getLog(getClass())
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "name", value = "Name", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "emailOptional", value = "Optional Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "phone", value = "Phone", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "subject", value = "Subject", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "message", value = "Message", required = true, dataType = "string", paramType = "query")
+  ])
 	@RequestMapping(method = POST, value = "/contact")
 	@ResponseBody
 	ResponseEntity<String> contact(@RequestBody ContactCommand command){
@@ -69,6 +77,10 @@ class ValuarteController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
 	}
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "token", value = "Token", required = true, dataType = "string", paramType = "query")
+  ])
 	@RequestMapping(method = POST, value = "/forgotPassword")
 	@ResponseBody
 	ResponseEntity<String> forgotPassword(@RequestBody ForgotPasswordCommand command){
