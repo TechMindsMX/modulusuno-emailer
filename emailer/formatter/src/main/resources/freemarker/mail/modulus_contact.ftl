@@ -10,7 +10,7 @@
   </style>
 </head>
 <body>
-  <img src="http://techminds.com.mx.s3.amazonaws.com/img/logoiecce-small.png">
+  <img src="http://www.modulusuno.com.s3.amazonaws.com/logo_modulusuno.png" width="60%" align="center">
   <h1>Forma de contacto de Modulusuno API</h1>
   <hr>
   <p>Estimado administrador de Modulusuno API, la persona ${name} le ha contactado usando el formulario del sitio web, puede responder al correo: ${emailOptional}, y su mensaje es el siguiente: ${message}.</p>
