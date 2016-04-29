@@ -53,8 +53,7 @@ class TalentuaController {
 
 	@RequestMapping(method = POST, value = "/forgotPassword")
 	@ResponseBody
-	ResponseEntity<String> forgotPassword(@RequestBody String json){
-		ForgotPasswordCommand command = new Gson().fromJson(json, ForgotPasswordCommand.class)
+	ResponseEntity<String> forgotPassword(@RequestBody ForgotPasswordCommand command){
 		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
@@ -71,8 +70,7 @@ class TalentuaController {
 
 	@RequestMapping(method = POST, value = "/register")
 	@ResponseBody
-	ResponseEntity<String> register(@RequestBody String json){
-		RegisterCommand command = new Gson().fromJson(json, RegisterCommand.class)
+	ResponseEntity<String> register(@RequestBody RegisterCommand command){
 		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
@@ -89,8 +87,7 @@ class TalentuaController {
 
 	@RequestMapping(method = POST, value = "/newUser")
 	@ResponseBody
-	ResponseEntity<String> newUser(@RequestBody String json){
-		NewUserCommand command = new Gson().fromJson(json, NewUserCommand.class)
+	ResponseEntity<String> newUser(@RequestBody NewUserCommand command){
 		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
@@ -107,8 +104,7 @@ class TalentuaController {
 
 	@RequestMapping(method = POST, value = "/forgotUsername")
 	@ResponseBody
-	ResponseEntity<String> forgotUsername(@RequestBody String json){
-		NewUserCommand command = new Gson().fromJson(json, NewUserCommand.class)
+	ResponseEntity<String> forgotUsername(@RequestBody NewUserCommand command){
 		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
@@ -125,8 +121,7 @@ class TalentuaController {
 
 	@RequestMapping(method = POST, value = "/musicianAssignedFacilitator")
 	@ResponseBody
-	ResponseEntity<String> musicianAssignedFacilitator(@RequestBody String json){
-		AssignationCommand command = new Gson().fromJson(json, AssignationCommand.class)
+	ResponseEntity<String> musicianAssignedFacilitator(@RequestBody AssignationCommand command){
 		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
@@ -144,8 +139,7 @@ class TalentuaController {
 
 	@RequestMapping(method = POST, value = "/musicianAssignedUser")
 	@ResponseBody
-	ResponseEntity<String> musicianAssignedUser(@RequestBody String json){
-		AssignationCommand command = new Gson().fromJson(json, AssignationCommand.class)
+	ResponseEntity<String> musicianAssignedUser(@RequestBody AssignationCommand command){
 		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
@@ -164,8 +158,7 @@ class TalentuaController {
 
 	@RequestMapping(method = POST, value = "/musicianRefused")
 	@ResponseBody
-	ResponseEntity<String> musicianRefused(@RequestBody String json){
-		AssignationCommand command = new Gson().fromJson(json, AssignationCommand.class)
+	ResponseEntity<String> musicianRefused(@RequestBody AssignationCommand command){
 		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
@@ -184,8 +177,7 @@ class TalentuaController {
 
 	@RequestMapping(method = POST, value = "/companyAssignedBuyer")
 	@ResponseBody
-	ResponseEntity<String> companyAssignedBuyer(@RequestBody String json){
-		AssignationCommand command = new Gson().fromJson(json, AssignationCommand.class)
+	ResponseEntity<String> companyAssignedBuyer(@RequestBody AssignationCommand command){
 		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
@@ -203,8 +195,7 @@ class TalentuaController {
 
 	@RequestMapping(method = POST, value = "/companyAssignedUser")
 	@ResponseBody
-	ResponseEntity<String> companyAssignedUser(@RequestBody String json){
-		AssignationCommand command = new Gson().fromJson(json, AssignationCommand.class)
+	ResponseEntity<String> companyAssignedUser(@RequestBody AssignationCommand command){
 		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
@@ -223,8 +214,7 @@ class TalentuaController {
 
 	@RequestMapping(method = POST, value = "/companyRefused")
 	@ResponseBody
-	ResponseEntity<String> companyRefused(@RequestBody String json){
-		AssignationCommand command = new Gson().fromJson(json, AssignationCommand.class)
+	ResponseEntity<String> companyRefused(@RequestBody AssignationCommand command){
 		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
@@ -243,8 +233,7 @@ class TalentuaController {
 
 	@RequestMapping(method = POST, value = "/companyEdited")
 	@ResponseBody
-	ResponseEntity<String> companyEdited(@RequestBody String json){
-		AssignationCommand command = new Gson().fromJson(json, AssignationCommand.class)
+	ResponseEntity<String> companyEdited(@RequestBody AssignationCommand command){
 		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
@@ -262,8 +251,7 @@ class TalentuaController {
 
 	@RequestMapping(method = POST, value = "/musicianEdited")
 	@ResponseBody
-	ResponseEntity<String> musicianEdited(@RequestBody String json){
-		AssignationCommand command = new Gson().fromJson(json, AssignationCommand.class)
+	ResponseEntity<String> musicianEdited(@RequestBody AssignationCommand command){
 		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
