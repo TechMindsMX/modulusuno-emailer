@@ -299,7 +299,7 @@ class ModulusController {
     bean.setMessage(command.getMessage())
     bean.setType(MessageType.MODULUS_CONTACT)
     messageDispatcher.message(bean)
-    return "redirect:http://localhost:8081/web/"
+    return "redirect:${properties.getProperty(ApplicationConstants.MODULUSUNO_HOME)}"
 	}
 
 

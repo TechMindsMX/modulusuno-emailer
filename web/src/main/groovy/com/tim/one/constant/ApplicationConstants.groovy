@@ -9,4 +9,5 @@ interface ApplicationConstants {
   static final String ADMIN_EMAIL = "admin.email"
   static final String INTEGRADORA_ADMIN = "integradora.admin"
   static final String MODULUSUNO_TARGET = 'modulusuno.target'
+  static final String MODULUSUNO_HOME = 'mosulusuno.home'
 }
