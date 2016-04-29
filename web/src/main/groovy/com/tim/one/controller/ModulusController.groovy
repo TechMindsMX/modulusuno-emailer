@@ -283,12 +283,11 @@ class ModulusController {
   }
 
   @RequestMapping(method = POST, value = "/contact")
-	@ResponseBody
 	String contact(ContactCommand command){
 		log.info "Sending contact email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
-	    return new "Error: ${ErrorCode.VALIDATOR_ERROR.ordinal()}"
+	    return "Error: ${ErrorCode.VALIDATOR_ERROR.ordinal()}"
 		}
 
 		ContactBean bean = new ContactBean()
