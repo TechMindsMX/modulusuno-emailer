@@ -13,6 +13,9 @@ import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseBody
+import io.swagger.annotations.Api
+import io.swagger.annotations.ApiImplicitParams
+import io.swagger.annotations.ApiImplicitParam
 
 import com.google.gson.Gson
 import com.tim.one.bean.ErrorCode
@@ -34,8 +37,9 @@ import com.tim.one.constant.ApplicationConstants
  *
  */
 
+@Api(description = "Know how manage talentua user request to send emails")
 @Controller
-@RequestMapping("/email/*")
+@RequestMapping("/services/email/*")
 public class TalentuaController {
 
 	@Autowired
