@@ -8,7 +8,6 @@ import org.hibernate.validator.constraints.SafeHtml
 class ContactCommand implements Command {
 
 	@Email
-	@NotNull
 	String email
 
 	@SafeHtml

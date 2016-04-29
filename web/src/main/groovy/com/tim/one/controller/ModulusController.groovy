@@ -39,6 +39,8 @@ import com.tim.one.command.SaleOrderCommand
 import com.tim.one.bean.SaleOrderBean
 import com.tim.one.command.ProcessorPayrollCommand
 import com.tim.one.bean.ProcessorPayrollBean
+import com.tim.one.command.ContactCommand
+import com.tim.one.bean.ContactBean
 
 /**
  * @author josdem
@@ -55,6 +57,8 @@ class ModulusController {
 	MessageService messageDispatcher
 	@Autowired
 	CommandValidator validator
+  @Autowired
+	Properties properties
 
 	Log log = LogFactory.getLog(getClass())
 
@@ -277,5 +281,27 @@ class ModulusController {
     messageDispatcher.message(bean)
     return new ResponseEntity<String>("OK", HttpStatus.OK)
   }
+
+  @RequestMapping(method = POST, value = "/contact", consumes="application/json")
+	@ResponseBody
+	public ResponseEntity<String> contact(@RequestBody ContactCommand command){
+		log.info "Sending contact email: ${command.dump()}"
+
+		if(!validator.isValid(command)){
+	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST)
+		}
+
+		ContactBean bean = new ContactBean()
+    bean.setEmail(properties.getProperty(ApplicationConstants.MODULUSUNO_TARGET))
+    bean.setName(command.getName())
+    bean.setEmailOptional(command.getEmailOptional())
+    bean.setPhone(command.getPhone())
+    bean.setSubject(command.getSubject())
+    bean.setMessage(command.getMessage())
+    bean.setType(MessageType.MODULUS_CONTACT)
+    messageDispatcher.message(bean)
+    return new ResponseEntity<String>("OK", HttpStatus.OK)
+	}
+
 
 }
