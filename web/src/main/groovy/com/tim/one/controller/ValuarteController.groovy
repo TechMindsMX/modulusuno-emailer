@@ -37,7 +37,7 @@ import com.tim.one.constant.ApplicationConstants
 @Api(description = "Know how manage Valuarte Users requests to send mails")
 @Controller
 @RequestMapping("/services/valuarte/*")
-public class ValuarteController {
+class ValuarteController {
 
 	@Autowired
 	private MessageService messageDispatcher
@@ -50,8 +50,7 @@ public class ValuarteController {
 
 	@RequestMapping(method = POST, value = "/contact")
 	@ResponseBody
-	public ResponseEntity<String> contact(@RequestBody String json){
-		ContactCommand command = new Gson().fromJson(json, ContactCommand.class)
+	ResponseEntity<String> contact(@RequestBody ContactCommand command){
 		log.info "Sending contact email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
@@ -72,8 +71,7 @@ public class ValuarteController {
 
 	@RequestMapping(method = POST, value = "/forgotPassword")
 	@ResponseBody
-	public ResponseEntity<String> forgotPassword(@RequestBody String json){
-		ForgotPasswordCommand command = new Gson().fromJson(json, ForgotPasswordCommand.class)
+	ResponseEntity<String> forgotPassword(@RequestBody ForgotPasswordCommand command){
 		log.info "Sending email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
