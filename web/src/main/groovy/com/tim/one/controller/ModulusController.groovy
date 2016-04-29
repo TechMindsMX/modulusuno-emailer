@@ -282,13 +282,12 @@ class ModulusController {
     return new ResponseEntity<String>("OK", HttpStatus.OK)
   }
 
-  @RequestMapping(method = POST, value = "/contact", consumes="application/json")
-	@ResponseBody
-	public ResponseEntity<String> contact(@RequestBody ContactCommand command){
+  @RequestMapping(method = POST, value = "/contact")
+	String contact(ContactCommand command){
 		log.info "Sending contact email: ${command.dump()}"
 
 		if(!validator.isValid(command)){
-	    return new ResponseEntity<String>("Error: " + ErrorCode.VALIDATOR_ERROR.ordinal(), HttpStatus.BAD_REQUEST)
+	    return "Error: ${ErrorCode.VALIDATOR_ERROR.ordinal()}"
 		}
 
 		ContactBean bean = new ContactBean()
@@ -300,7 +299,7 @@ class ModulusController {
     bean.setMessage(command.getMessage())
     bean.setType(MessageType.MODULUS_CONTACT)
     messageDispatcher.message(bean)
-    return new ResponseEntity<String>("OK", HttpStatus.OK)
+    return "redirect:${properties.getProperty(ApplicationConstants.MODULUSUNO_HOME)}"
 	}
 
 
