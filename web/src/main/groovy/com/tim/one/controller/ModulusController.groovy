@@ -288,7 +288,7 @@ class ModulusController {
 		}
 
 		ContactBean bean = new ContactBean()
-    bean.setEmail(properties.getProperty(ApplicationConstants.VALUARTE_TARGET))
+    bean.setEmail(properties.getProperty(ApplicationConstants.MODULUSUNO_TARGET))
     bean.setName(command.getName())
     bean.setEmailOptional(command.getEmailOptional())
     bean.setPhone(command.getPhone())
