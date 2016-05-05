@@ -17,7 +17,6 @@ import io.swagger.annotations.Api
 import io.swagger.annotations.ApiImplicitParams
 import io.swagger.annotations.ApiImplicitParam
 
-import com.google.gson.Gson
 import com.tim.one.bean.ErrorCode
 import com.tim.one.enums.MessageType
 import com.tim.one.bean.AssignationBean

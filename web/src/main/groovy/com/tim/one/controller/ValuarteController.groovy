@@ -17,7 +17,6 @@ import io.swagger.annotations.Api
 import io.swagger.annotations.ApiImplicitParams
 import io.swagger.annotations.ApiImplicitParam
 
-import com.google.gson.Gson
 import com.tim.one.bean.ErrorCode
 import com.tim.one.enums.MessageType
 import com.tim.one.bean.ContactBean
@@ -56,7 +55,7 @@ class ValuarteController {
     @ApiImplicitParam(name = "subject", value = "Subject", required = true, dataType = "string", paramType = "query"),
     @ApiImplicitParam(name = "message", value = "Message", required = true, dataType = "string", paramType = "query")
   ])
-	@RequestMapping(method = POST, value = "/contact")
+	@RequestMapping(method = POST, value = "/contact", consumes = "application/json")
 	@ResponseBody
 	ResponseEntity<String> contact(@RequestBody ContactCommand command){
 		log.info "Sending contact email: ${command.dump()}"
@@ -81,7 +80,7 @@ class ValuarteController {
     @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
     @ApiImplicitParam(name = "token", value = "Token", required = true, dataType = "string", paramType = "query")
   ])
-	@RequestMapping(method = POST, value = "/forgotPassword")
+	@RequestMapping(method = POST, value = "/forgotPassword", consumes = "application/json")
 	@ResponseBody
 	ResponseEntity<String> forgotPassword(@RequestBody ForgotPasswordCommand command){
 		log.info "Sending email: ${command.dump()}"

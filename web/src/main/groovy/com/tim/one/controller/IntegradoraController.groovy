@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
 import org.springframework.http.HttpStatus
-import com.google.gson.Gson
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiImplicitParam
 import io.swagger.annotations.ApiImplicitParams
@@ -55,7 +54,7 @@ class IntegradoraController {
     @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
     @ApiImplicitParam(name = "type", value = "Lead Type", required = true, dataType = "string", paramType = "query", allowableValues = "NEW_USER")
   ])
-  @RequestMapping(method = POST, value = "/newUser")
+  @RequestMapping(method = POST, value = "/newUser", consumes = "application/json")
   @ResponseBody
   ResponseEntity<String> newUser(@RequestBody NameCommand command){
     log.info "Sending email: ${command.dump()}"
@@ -76,7 +75,7 @@ class IntegradoraController {
     @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
     @ApiImplicitParam(name = "token", value = "Token", required = true, dataType = "string", paramType = "query")
   ])
-  @RequestMapping(method = POST, value = "/register")
+  @RequestMapping(method = POST, value = "/register", consumes = "application/json")
   @ResponseBody
   ResponseEntity<String> register(@RequestBody RegisterCommand command){
     log.info "Sending email: ${command.dump()}"
@@ -97,7 +96,7 @@ class IntegradoraController {
     @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
     @ApiImplicitParam(name = "token", value = "Token", required = true, dataType = "string", paramType = "query")
   ])
-  @RequestMapping(method = POST, value = "/forgot")
+  @RequestMapping(method = POST, value = "/forgot", consumes = "application/json")
   @ResponseBody
   ResponseEntity<String> forgot(@RequestBody ForgotPasswordCommand command){
     log.info "Sending email: ${command.dump()}"
@@ -123,7 +122,7 @@ class IntegradoraController {
     @ApiImplicitParam(name = "accountBank", value = "Account Bank", required = true, dataType = "string", paramType = "query"),
     @ApiImplicitParam(name = "url", value = "Url", required = true, dataType = "string", paramType = "query")
   ])
-  @RequestMapping(method = POST, value = "/depositOrder")
+  @RequestMapping(method = POST, value = "/depositOrder", consumes = "application/json")
   @ResponseBody
   ResponseEntity<String> depositOrderByCompany(@RequestBody DepositOrderCommand command){
     log.info "Sending email: ${command.dump()}"
@@ -152,7 +151,7 @@ class IntegradoraController {
     @ApiImplicitParam(name = "message", value = "Message", required = true, dataType = "string", paramType = "query"),
     @ApiImplicitParam(name = "url", value = "Url", required = true, dataType = "string", paramType = "query")
   ])
-  @RequestMapping(method = POST, value = "/companyIntegrated")
+  @RequestMapping(method = POST, value = "/companyIntegrated", consumes = "application/json")
   @ResponseBody
   ResponseEntity<String> companyAssignedBuyer(@RequestBody CompanyIntegratedCommand command){
     log.info "Sending email: ${command.dump()}"
@@ -177,7 +176,7 @@ class IntegradoraController {
     @ApiImplicitParam(name = "email", value = "Email", required = true, dataType = "string", paramType = "query"),
     @ApiImplicitParam(name = "type", value = "Lead Type", required = true, dataType = "string", paramType = "query")
   ])
-  @RequestMapping(method = POST, value = "/clientProvider")
+  @RequestMapping(method = POST, value = "/clientProvider", consumes = "application/json")
   @ResponseBody
   ResponseEntity<String> clientProvider(@RequestBody NameCommand command){
     log.info "Sending email: ${command.dump()}"
@@ -202,7 +201,7 @@ class IntegradoraController {
     @ApiImplicitParam(name = "url", value = "Url", required = true, dataType = "string", paramType = "query"),
     @ApiImplicitParam(name = "type", value = "Lead Type", required = true, dataType = "string", paramType = "query")
   ])
-  @RequestMapping(method = POST, value = "/authorizeSaleOrder")
+  @RequestMapping(method = POST, value = "/authorizeSaleOrder", consumes = "application/json")
   @ResponseBody
   ResponseEntity<String> authorizeSaleOrder(@RequestBody SaleOrderCommand command){
     log.info "Sending email: ${command.dump()}"
