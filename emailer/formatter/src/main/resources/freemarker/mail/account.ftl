@@ -10,11 +10,11 @@
   </style>
 </head>
 <body>
-  <img src="http://techminds.com.mx.s3.amazonaws.com/img/logoiecce-small.png">
+  <img src="http://www.modulusuno.com.s3.amazonaws.com/logo_modulusuno.png" width="60%" align="center">
   <h1>Creación de cuenta</h1>
   <hr>
   <p>Estimado cliente ${name}, le informamos que se ha creado una cuenta Modulusuno: ${account} con cuenta STP ${stpAccount}.</p>
   <p><i>Sinceramente,<i/></p>
-  <p><i>Integradora de Emprendimientos Culturales</i></p>
+  <p><i>Equipo de Modulus UNO</i></p>
 </body>
 </html>
